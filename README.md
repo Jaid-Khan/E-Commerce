@@ -2,7 +2,7 @@
 
 This is the **frontend** of an E-Commerce application built with **React + Vite**.
 
-Frontend/
+```Frontend/
 ├── .git/
 ├── .gitignore
 ├── node_modules/
@@ -97,7 +97,7 @@ Frontend/
 │           ├── MensProductCategoryPage.jsx
 │           ├── SearchProductPage.jsx
 │           └── WomensProductCategoryPage.jsx
-└── vite.config.js
+└── vite.config.js```
 
 ---
 

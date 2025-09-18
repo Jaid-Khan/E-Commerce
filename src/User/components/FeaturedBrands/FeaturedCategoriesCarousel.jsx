@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import FeaturedCategoryCard from './FeaturedCategoryCard';
-import featuredCategories from '../../Data/FeaturedCategoryData';
+import featuredCategories from '../../../Data/FeaturedCategoryData';
 
 const FeaturedCategoriesCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,7 +66,7 @@ const FeaturedCategoriesCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000); // 4 seconds
+    }, 50000); // 5 seconds
 
     return () => clearInterval(interval);
   }, [currentIndex]);

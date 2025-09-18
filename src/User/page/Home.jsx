@@ -1,23 +1,27 @@
-import React from 'react'
-import HeroCarousel from '../components/HeroCarousel'
-import FeaturedCategoriesCarousel from '../components/FeaturedCategoriesCarousel'
-import NewArrivalsCarousel from '../components/NewArrivalCarousel'
-import ShopByCategory from '../components/ShopByCategory'
-import  TrendingNowCarousal  from '../components/TrendingNowCarousal'
-import Footer  from '../components/Footer'
+import React from "react";
+import HeroCarousel from "../components/HeroCarousal/HeroCarousel";
+import FeaturedCategoriesCarousel from "../components/FeaturedBrands/FeaturedCategoriesCarousel";
+import NewArrivalsCarousel from "../components/NewCollections/NewArrivalCarousel";
+import ShopByCategory from "../components/ShopByCategory/ShopByCategory";
+import TrendingNowCarousal from "../components/TrendingNow/TrendingNowCarousal";
+import WomenCarousel from "../components/WomenSectionHomePage/WomenSectionCarousal";
+import MensCarousel from "../components/MenSectionHomePage/MenSectionCarousal";
+import OffersBanner from "../components/HomePageBanners/OffersBanner";
 
 
-function Home(){
+function Home() {
   return (
     <div>
-        <HeroCarousel/>
-        <ShopByCategory/>
-        <FeaturedCategoriesCarousel/>
-        <NewArrivalsCarousel/>
-        <TrendingNowCarousal/>
-        <Footer/>
+      <HeroCarousel />
+      <ShopByCategory />
+      <NewArrivalsCarousel />
+      <TrendingNowCarousal />
+      <OffersBanner />
+      <WomenCarousel />
+      <MensCarousel />
+      <FeaturedCategoriesCarousel />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

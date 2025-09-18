@@ -1,5 +1,5 @@
 import React from 'react';
-import categories from '../../Data/ShopByCategory';
+import categories from '../../../Data/ShopByCategory';
 import ShopByCategoryCard from './ShopByCategoryCard';
 
 const ShopByCategory = () => {

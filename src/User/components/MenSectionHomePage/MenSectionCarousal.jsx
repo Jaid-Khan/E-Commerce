@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import NewArrivalCard from './NewArrivalCard';
-import newArrivalsData from '../../Data/NewArrivalData';
+import MenCard from './MenSectionCard';
+import MenData from '../../../Data/MenSectionHomeData';
 
-const NewArrivalCarousel = () => {
+const MenCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [itemsPerView, setItemsPerView] = useState(4);
@@ -11,13 +11,13 @@ const NewArrivalCarousel = () => {
 
   // Create duplicated slides for infinite effect
   const duplicatedItems = [
-    ...newArrivalsData,
-    ...newArrivalsData,
-    ...newArrivalsData
+    ...MenData,
+    ...MenData,
+    ...MenData
   ];
 
   const totalSlides = duplicatedItems.length;
-  const actualItemsCount = newArrivalsData.length;
+  const actualItemsCount = MenData.length;
 
   // Handle responsive items per view
   useEffect(() => {
@@ -81,7 +81,7 @@ const NewArrivalCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [currentIndex, itemsPerView]);
@@ -90,7 +90,8 @@ const NewArrivalCarousel = () => {
     <section className="py-8 sm:py-12 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-xs sm:text-sm text-red-600 font-semibold text-center mb-6 sm:mb-10 tracking-wide">
-          JUST ARRIVED <span className="text-xl sm:text-2xl md:text-3xl text-black block mt-1 sm:mt-2 font-bold">NEW COLLECTIONS</span>
+          {/* MEN'S COLLECTION  */}
+          <span className="text-xl sm:text-2xl md:text-3xl text-black block mt-1 sm:mt-2 font-bold">Discover the Men’s Collection</span>
         </h2>
         
         <div className="relative">
@@ -126,7 +127,7 @@ const NewArrivalCarousel = () => {
                   className="flex-shrink-0"
                   style={{ width: `${100 / itemsPerView}%` }}
                 >
-                  <NewArrivalCard item={item} />
+                  <MenCard item={item} />
                 </div>
               ))}
             </div>
@@ -135,7 +136,7 @@ const NewArrivalCarousel = () => {
         
         {/* Dots Indicator */}
         {/* <div className="flex justify-center mt-6">
-          {newArrivalsData.slice(0, Math.ceil(actualItemsCount / itemsPerView)).map((_, index) => (
+          {WomenData.slice(0, Math.ceil(actualItemsCount / itemsPerView)).map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index * itemsPerView)}
@@ -151,4 +152,4 @@ const NewArrivalCarousel = () => {
   );
 };
 
-export default NewArrivalCarousel;
+export default MenCarousel;

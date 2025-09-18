@@ -1,47 +1,3 @@
-// // trendingData.js
-// const TrendingNowData = [
-//   {
-//     id: 1,
-//     name: "Men's Fashion",
-//     image:
-//       "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-//   {
-//     id: 2,
-//     name: "Women's Collection",
-//     image:
-//       "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-//   {
-//     id: 3,
-//     name: "Footwear",
-//     image:
-//       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-//   {
-//     id: 4,
-//     name: "Accessories",
-//     image:
-//       "https://images.unsplash.com/photo-1591561954557-26941169b49e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-//   {
-//     id: 5,
-//     name: "Sportswear",
-//     image:
-//       "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-//   {
-//     id: 6,
-//     name: "Formal Wear",
-//     image:
-//       "https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-//   },
-// ];
-
-// export default TrendingNowData;
-
-
-// TrendingNowData.js
 const TrendingNowData = [
   {
     id: 1,
@@ -69,7 +25,7 @@ const TrendingNowData = [
   },
   {
     id: 5,
-    name: "STELLA MCCARTNEY",
+    name: "Balanciaga",
     discount: "Up to 40% off",
     image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&auto=format&fit=crop&q=60"
   },

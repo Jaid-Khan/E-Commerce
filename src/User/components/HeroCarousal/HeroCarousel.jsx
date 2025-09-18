@@ -1,9 +1,34 @@
+// HeroCarousel.jsx
 import React, { useState, useEffect } from 'react';
-import HeroCarouselData from '../../Data/HeroCarouselData';
+import HeroCarouselData from '../../../Data/HeroCarouselData';
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const slides = HeroCarouselData;
+
+  // Preload images
+  useEffect(() => {
+    const preloadImages = () => {
+      const promises = slides.map(slide => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = slide.backgroundImage;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+      
+      Promise.all(promises)
+        .then(() => setIsLoading(false))
+        .catch(err => {
+          console.error("Error preloading images", err);
+          setIsLoading(false);
+        });
+    };
+    
+    preloadImages();
+  }, [slides]);
 
   // Auto-advance the carousel
   useEffect(() => {
@@ -38,16 +63,28 @@ const HeroCarousel = () => {
 
       {/* Carousel */}
       <div className="relative w-full h-[500px] overflow-hidden">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-200 z-30">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+          </div>
+        )}
+        
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-800 ease-in-out text-white text-center px-5 ${slide.bgColor} ${
+            className={`absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-800 ease-in-out text-white text-center px-5 ${
               index === currentSlide ? 'opacity-100' : ''
-            }`}
+            } ${slide.bgColor}`}
+            style={{
+              backgroundImage: `linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${slide.backgroundImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           >
-            <div className="max-w-[800px] px-5 animate-fade-in-up">
-              <h2 className="text-3.5xl font-bold mb-2.5 text-shadow-md">{slide.title}</h2>
-              <h3 className="text-2.2xl font-semibold mb-5 text-shadow-sm">{slide.subtitle}</h3>
+            <div className="max-w-[800px] px-5 animate-fade-in-up z-10 relative">
+              <h1 className="text-3xl md:text-5xl font-bold mb-2.5 text-shadow-md">{slide.title}</h1>
+              <h3 className="text-2.2xl md:text-3xl font-semibold mb-5 text-shadow-sm">{slide.subtitle}</h3>
               <p className="text-xl mb-7 max-w-[600px] mx-auto leading-relaxed">{slide.description}</p>
               <button className="bg-white text-gray-800 border-none py-3.5 px-10 text-base font-semibold rounded-full cursor-pointer transition-all duration-300 ease-in-out shadow-md hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg">
                 {slide.ctaText}
@@ -58,20 +95,20 @@ const HeroCarousel = () => {
         
         {/* Navigation arrows - hidden on mobile, visible on medium screens and up */}
         <button 
-          className="hidden md:flex absolute top-1/2 left-5 transform -translate-y-1/2 bg-white/20 border-none text-white text-2xl w-12 h-12 rounded-full cursor-pointer transition-all duration-300 ease-in-out items-center justify-center hover:bg-white/40"
+          className="hidden md:flex absolute top-1/2 left-5 transform -translate-y-1/2 bg-white/20 border-none text-white text-2xl w-12 h-12 rounded-full cursor-pointer transition-all duration-300 ease-in-out items-center justify-center hover:bg-white/40 z-20"
           onClick={goToPrevSlide}
         >
           &#8249;
         </button>
         <button 
-          className="hidden md:flex absolute top-1/2 right-5 transform -translate-y-1/2 bg-white/20 border-none text-white text-2xl w-12 h-12 rounded-full cursor-pointer transition-all duration-300 ease-in-out items-center justify-center hover:bg-white/40"
+          className="hidden md:flex absolute top-1/2 right-5 transform -translate-y-1/2 bg-white/20 border-none text-white text-2xl w-12 h-12 rounded-full cursor-pointer transition-all duration-300 ease-in-out items-center justify-center hover:bg-white/40 z-20"
           onClick={goToNextSlide}
         >
           &#8250;
         </button>
         
         {/* Indicators */}
-        {/* <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2.5">
+        {/* <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2.5 z-20">
           {slides.map((_, index) => (
             <button
               key={index}

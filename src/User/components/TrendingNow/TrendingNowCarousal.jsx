@@ -1,8 +1,8 @@
 // TrendingCarousal.js
 import React, { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import TrendingNowCard from "../components/TrendingNowCard";
-import TrendingNowData from "../../Data/TrendingNowData";
+import TrendingNowCard from "./TrendingNowCard";
+import TrendingNowData from "../../../Data/TrendingNowData";
 
 const TrendingNowCarousal = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

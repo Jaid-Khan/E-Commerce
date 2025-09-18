@@ -3,8 +3,8 @@ const categories = [
       id: 1,
       name: "Men's Clothing",
       description: "Discover the latest trends in men's fashion",
-      image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      url: "/mens-clothing",
+      image: "https://images.unsplash.com/photo-1619603364937-8d7af41ef206?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1lbiUyMGNsb3RoaW5nfGVufDB8fDB8fHww",
+      url: "/MensProductCategoryPage",
       color: "bg-blue-50",
       textColor: "text-blue-700"
     },
@@ -12,8 +12,8 @@ const categories = [
       id: 2,
       name: "Women's Clothing",
       description: "Explore our collection of women's apparel",
-      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-      url: "/womens-clothing",
+      image: "https://images.unsplash.com/photo-1572915685875-844d7224b8f2?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWVuJTIwY2xvdGhpbmd8ZW58MHx8MHx8fDA%3D",
+      url: "/WomensProductCategoryPage",
       color: "bg-pink-50",
       textColor: "text-pink-700"
     }

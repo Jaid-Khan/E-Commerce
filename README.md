@@ -1,103 +1,163 @@
-# E-Commerce Website Frontend File Structure
+# 🛒 E-Commerce Frontend
 
-
-
+This is the **frontend** of an E-Commerce application built with **React + Vite**.
 
 Frontend/
-├── .git/                    # Git version control directory
-├── .gitignore              # Specifies files to ignore in Git
-├── node_modules/           # All npm dependencies (automatically generated)
-├── dist/                   # Production build output
+├── .git/
+├── .gitignore
+├── node_modules/
+├── dist/
 │   ├── index.html
 │   ├── vite.svg
 │   └── assets/
 │       ├── index-BL-0bdPS.js
 │       ├── index-CPYrd8zj.css
 │       └── UrbanEaseLogo-BLEBV-Sz.png
-├── eslint.config.js        # ESLint configuration
-├── index.html              # Main HTML entry point
-├── package-lock.json       # NPM dependency lock file
-├── package.json            # Project dependencies and scripts
-├── README.md               # Project documentation (this file)
-├── src/                    # Source code directory
-│   ├── App.css             # Main application styles
-│   ├── App.jsx             # Root React component
-│   ├── index.css           # Global styles
-│   ├── main.jsx            # JavaScript entry point
-│   ├── assets/             # Static assets
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── src/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   ├── assets/
 │   │   ├── react.svg
 │   │   └── UrbanEaseLogo.png
-│   ├── Data/               # Application data files
-│   │   ├── CartData.js                      # Shopping cart data
-│   │   ├── DiscoverMoreSearchPage.js        # Search page discovery data
-│   │   ├── FeaturedCategoryData.js          # Featured categories data
-│   │   ├── HeroCarouselData.js              # Hero carousel content data
-│   │   ├── MenSectionHomeData.js            # Men's section home page data
-│   │   ├── MensProductCategoryData.js       # Men's product category data
-│   │   ├── NavMenuData.js                   # Navigation menu data
-│   │   ├── NewArrivalData.js                # New arrival products data
-│   │   ├── ShopByCategory.js                # Shop by category data
-│   │   ├── TrendingNowData.js               # Trending products data
-│   │   ├── WomenSectionHomeData.js          # Women's section home page data
-│   │   └── WomensProductCategoryData.js     # Women's product category data
-│   └── User/               # User interface components
-│       ├── components/     # Reusable UI components
-│       │   ├── Cart/                          # Shopping cart components
-│       │   │   ├── CartItem.jsx               # Individual cart item component
-│       │   │   ├── CartItemList.jsx           # List of cart items
-│       │   │   └── OrderSummary.jsx           # Order summary component
-│       │   ├── FeaturedBrands/                # Featured brands components
-│       │   │   ├── FeaturedCategoriesCarousel.jsx  # Categories carousel
-│       │   │   └── FeaturedCategoryCard.jsx   # Individual category card
-│       │   ├── Footer/                        # Footer component
-│       │   │   └── Footer.jsx                 # Main footer component
-│       │   ├── HeroCarousal/                  # Hero carousel components
-│       │   │   └── HeroCarousel.jsx           # Main hero carousel
-│       │   ├── HomePageBanners/               # Home page banners
-│       │   │   └── OffersBanner.jsx           # Special offers banner
-│       │   ├── MenSectionHomePage/            # Men's section components
-│       │   │   ├── MenSectionCard.jsx         # Individual men's product card
-│       │   │   └── MenSectionCarousal.jsx     # Men's products carousel
-│       │   ├── MensProductsCategory/          # Men's category components
+│   ├── Data/
+│   │   ├── CartData.js
+│   │   ├── DiscoverMoreSearchPage.js
+│   │   ├── FeaturedCategoryData.js
+│   │   ├── HeroCarouselData.js
+│   │   ├── MenSectionHomeData.js
+│   │   ├── MensProductCategoryData.js
+│   │   ├── NavMenuData.js
+│   │   ├── NewArrivalData.js
+│   │   ├── ShopByCategory.js
+│   │   ├── TrendingNowData.js
+│   │   ├── WomenSectionHomeData.js
+│   │   └── WomensProductCategoryData.js
+│   └── User/
+│       ├── components/
+│       │   ├── Cart/
+│       │   │   ├── CartItem.jsx
+│       │   │   ├── CartItemList.jsx
+│       │   │   └── OrderSummary.jsx
+│       │   ├── FeaturedBrands/
+│       │   │   ├── FeaturedCategoriesCarousel.jsx
+│       │   │   └── FeaturedCategoryCard.jsx
+│       │   ├── Footer/
+│       │   │   └── Footer.jsx
+│       │   ├── HeroCarousal/
+│       │   │   └── HeroCarousel.jsx
+│       │   ├── HomePageBanners/
+│       │   │   └── OffersBanner.jsx
+│       │   ├── MenSectionHomePage/
+│       │   │   ├── MenSectionCard.jsx
+│       │   │   └── MenSectionCarousal.jsx
+│       │   ├── MensProductsCategory/
 │       │   │   ├── FeaturedProductsMensCategory/
-│       │   │   │   └── MensProductCategoryFeaturedProducts.jsx  # Featured men's products
+│       │   │   │   └── MensProductCategoryFeaturedProducts.jsx
 │       │   │   ├── HeroSectionMensCategory/
-│       │   │   │   └── MensProductCategoryHeroSection.jsx       # Men's category hero section
+│       │   │   │   └── MensProductCategoryHeroSection.jsx
 │       │   │   └── ShopByCategoryMensCategory/
-│       │   │       ├── MensProductShopByCategoryCard.jsx        # Men's category card
-│       │   │       └── MensProductsShopByCategory.jsx           # Men's shop by category
-│       │   ├── Nav/                           # Navigation components
-│       │   │   └── Nav.jsx                    # Main navigation component
-│       │   ├── NewCollections/                # New collections components
-│       │   │   ├── NewArrivalCard.jsx         # New arrival product card
-│       │   │   └── NewArrivalCarousel.jsx     # New arrivals carousel
-│       │   ├── SearchProduct/                 # Search functionality components
-│       │   │   ├── DiscoverMore.jsx           # Discover more search results
-│       │   │   └── SearchBox.jsx              # Search input component
-│       │   ├── ShopByCategory/                # Category shopping components
-│       │   │   ├── ShopByCategory.jsx         # Main shop by category
-│       │   │   └── ShopByCategoryCard.jsx     # Individual category card
-│       │   ├── TrendingNow/                   # Trending products components
-│       │   │   ├── TrendingNowCard.jsx        # Trending product card
-│       │   │   └── TrendingNowCarousal.jsx    # Trending products carousel
-│       │   ├── WomenSectionHomePage/          # Women's section components
-│       │   │   ├── WomenSectionCard.jsx       # Individual women's product card
-│       │   │   └── WomenSectionCarousal.jsx   # Women's products carousel
-│       │   └── WomensProductsCategory/        # Women's category components
+│       │   │       ├── MensProductShopByCategoryCard.jsx
+│       │   │       └── MensProductsShopByCategory.jsx
+│       │   ├── Nav/
+│       │   │   └── Nav.jsx
+│       │   ├── NewCollections/
+│       │   │   ├── NewArrivalCard.jsx
+│       │   │   └── NewArrivalCarousel.jsx
+│       │   ├── SearchProduct/
+│       │   │   ├── DiscoverMore.jsx
+│       │   │   └── SearchBox.jsx
+│       │   ├── ShopByCategory/
+│       │   │   ├── ShopByCategory.jsx
+│       │   │   └── ShopByCategoryCard.jsx
+│       │   ├── TrendingNow/
+│       │   │   ├── TrendingNowCard.jsx
+│       │   │   └── TrendingNowCarousal.jsx
+│       │   ├── WomenSectionHomePage/
+│       │   │   ├── WomenSectionCard.jsx
+│       │   │   └── WomenSectionCarousal.jsx
+│       │   └── WomensProductsCategory/
 │       │       ├── FeaturedProductsWomensCategory/
-│       │       │   ├── WomensProductCategoryFeaturedProducts.jsx      # Featured women's products
-│       │       │   └── WomensProductCategoryFeaturedProductsCard.jsx  # Featured product card
+│       │       │   ├── WomensProductCategoryFeaturedProducts.jsx
+│       │       │   └── WomensProductCategoryFeaturedProductsCard.jsx
 │       │       ├── HeroSectionWomensCategory/
-│       │       │   └── WomensProductCategoryHeroSection.jsx           # Women's category hero section
+│       │       │   └── WomensProductCategoryHeroSection.jsx
 │       │       └── ShopByCategoryWomensCategory/
-│       │           ├── WomensProductShopByCategoryCard.jsx            # Women's category card
-│       │           └── WomensProductsShopByCategory.jsx               # Women's shop by category
-│       └── page/           # Page-level components
-│           ├── Cart.jsx                       # Shopping cart page
-│           ├── Home.jsx                       # Home page
-│           ├── MensProductCategoryPage.jsx    # Men's products category page
-│           ├── SearchProductPage.jsx          # Product search page
-│           └── WomensProductCategoryPage.jsx  # Women's products category page
-└── vite.config.js         # Vite build tool configuration
+│       │           ├── WomensProductShopByCategoryCard.jsx
+│       │           └── WomensProductsShopByCategory.jsx
+│       └── page/
+│           ├── Cart.jsx
+│           ├── Home.jsx
+│           ├── MensProductCategoryPage.jsx
+│           ├── SearchProductPage.jsx
+│           └── WomensProductCategoryPage.jsx
+└── vite.config.js
 
+---
 
+## 📂 File Descriptions
+
+| File/Directory        | Description |
+|------------------------|-------------|
+| `.git/`               | Git version control directory |
+| `.gitignore`          | Specifies files to ignore in Git |
+| `node_modules/`       | All npm dependencies (automatically generated) |
+| `dist/`               | Production build output directory |
+| `eslint.config.js`    | ESLint configuration |
+| `index.html`          | Main HTML entry point |
+| `package-lock.json`   | NPM dependency lock file |
+| `package.json`        | Project dependencies and scripts |
+| `src/`                | Source code directory |
+| `src/App.css`         | Main application styles |
+| `src/App.jsx`         | Root React component |
+| `src/index.css`       | Global styles |
+| `src/main.jsx`        | JavaScript entry point |
+| `src/assets/`         | Static assets directory |
+| `src/Data/`           | Application data files |
+| `src/User/`           | User interface components |
+| `src/User/components/`| Reusable UI components |
+| `src/User/page/`      | Page-level components |
+| `vite.config.js`      | Vite build tool configuration |
+
+---
+
+## 📊 Key Data Files
+
+| Data File                   | Purpose |
+|------------------------------|---------|
+| `CartData.js`               | Shopping cart data |
+| `DiscoverMoreSearchPage.js` | Search page discovery data |
+| `FeaturedCategoryData.js`   | Featured categories data |
+| `HeroCarouselData.js`       | Hero carousel content data |
+| `MenSectionHomeData.js`     | Men's section home page data |
+| `MensProductCategoryData.js`| Men's product category data |
+| `NavMenuData.js`            | Navigation menu data |
+| `NewArrivalData.js`         | New arrival products data |
+| `ShopByCategory.js`         | Shop by category data |
+| `TrendingNowData.js`        | Trending products data |
+| `WomenSectionHomeData.js`   | Women's section home page data |
+| `WomensProductCategoryData.js` | Women's product category data |
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+- Node.js (version 14 or higher)  
+- npm or yarn package manager  
+
+---
+
+### ⚙️ Installation
+Clone the repository and install dependencies:
+
+```bash
+git clone <your-repo-url>
+cd E-Commerce
+npm install

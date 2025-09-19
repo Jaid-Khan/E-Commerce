@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { categories } from '../../../../Data/MensProductCategoryData'; // Fixed import path
-import MensProductShopBycategoryCard from './MensProductShopBycategoryCard'; // Import the new card component
+import MensProductShopByCategoryCard from './MensProductShopByCategoryCard'; // Import the new card component
 
 const MensProductsShopByCategory = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -21,7 +21,7 @@ const MensProductsShopByCategory = () => {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((category) => (
-          <MensProductShopBycategoryCard
+          <MensProductShopByCategoryCard
             key={category.id}
             category={category}
             hoveredItem={hoveredItem}

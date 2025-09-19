@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { categories, } from '../../../../Data/WomensProductCategoryData'; // Fixed import path
-import WomensProductShopByCategoryCard from './WomensProductShopBycategoryCard'; // Import the new card component
+import WomensProductShopByCategoryCard from './WomensProductShopByCategoryCard'; // Import the new card component
 
 const WomensProductsShopByCategory = () => {
   const [hoveredItem, setHoveredItem] = useState(null);

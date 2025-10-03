@@ -3,49 +3,57 @@ export const categories = [
     id: 1,
     name: "T-Shirts",
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    items: "20+ Products"
+    items: "20+ Products",
+    url:"/mensproduct",
   },
   {
     id: 2,
     name: "Jeans",
     image: "https://plus.unsplash.com/premium_photo-1674828601362-afb73c907ebe?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGVuaW18ZW58MHx8MHx8fDA%3D",
-    items: "25+ Products"
+    items: "25+ Products",
+    url:"/mensproduct",
   },
   {
     id: 3,
     name: "Denims Jackets",
     image: "https://plus.unsplash.com/premium_photo-1707816508645-d229ddd3aa65?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGRlbmltJTIwamFja2V0c3xlbnwwfHwwfHx8MA%3D%3D",
-    items: "30+ Products"
+    items: "30+ Products",
+    url:"/mensproduct",
   },
   {
     id: 4,
     name: "Shirts",
     image: "https://plus.unsplash.com/premium_photo-1725075088969-73798c9b422c?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2hpcnRzfGVufDB8fDB8fHww",
-    items: "15+ Products"
+    items: "15+ Products",
+    url:"/mensproduct",
   },
   {
     id: 5,
     name: "Outerwear",
     image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    items: "18+ Products"
+    items: "18+ Products",
+    url:"/mensproduct",
   },
   {
     id: 6,
     name: "Jackets",
     image: "https://images.unsplash.com/photo-1715608720717-ac3d1b638e44?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGFjdGl2ZXdlYXIlMjBtZW5zfGVufDB8fDB8fHww",
-    items: "22+ Products"
+    items: "22+ Products",
+    url:"/mensproduct",
   },
   {
     id: 7,
     name: "Formal",
     image: "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    items: "15+ Products"
+    items: "15+ Products",
+    url:"/mensproduct",
   },
   {
     id: 8,
     name: "Pants",
     image: "https://images.unsplash.com/photo-1536842808328-b4b605905d65?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBhbnR8ZW58MHx8MHx8fDA%3D",
-    items: "12+ Products"
+    items: "12+ Products",
+    url:"/mensproduct",
   }
 ];
 

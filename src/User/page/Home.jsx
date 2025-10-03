@@ -7,11 +7,18 @@ import TrendingNowCarousal from "../components/TrendingNow/TrendingNowCarousal";
 import WomenCarousel from "../components/WomenSectionHomePage/WomenSectionCarousal";
 import MensCarousel from "../components/MenSectionHomePage/MenSectionCarousal";
 import OffersBanner from "../components/HomePageBanners/OffersBanner";
-
+import Product from "../components/Product/Product";
+import OrderConfirmationPage from "../page/OrderConfirmationPage";
+import UserProfilePage from "./UserProfilePage";
+import ProductDetails from "../components/ProductDetails/ProductDetails";
+import MyOrdersPage from "./MyOrdersPage";
 
 function Home() {
   return (
     <div>
+      {/* <OrderConfirmationPage/> */}
+      {/* <Product/> */}
+      {/* <ProductDetails/> */}
       <HeroCarousel />
       <ShopByCategory />
       <NewArrivalsCarousel />

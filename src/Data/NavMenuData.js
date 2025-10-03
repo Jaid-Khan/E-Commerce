@@ -1,4 +1,4 @@
-// Updated navigation data (NavMenuData.js)
+// Navigation data configuration
 const navigation = {
   categories: [
     {
@@ -100,11 +100,18 @@ const navigation = {
     },
   ],
   pages: [
-    { name: 'Contact', href: '/contact' },
     { name: 'Sale', href: '/sale' },
-    { name: 'Company', href: '/company' },
-    { name: 'Stores', href: '/stores' },
+    { name: 'Brands', href: '/brand' },
   ],
 };
+
+// User menu items
+export const userMenuItems = [
+  { name: 'My Account', href: '/userprofile' },
+  { name: 'My Orders', href: '/myorderspage' },
+  { name: 'My Wishlist', href: '/mywishlistpage' },
+  { name: 'My Rewards', href: '/myrewardspage' },
+  { name: 'Gift Cards', href: '/giftcardspage' },
+];
 
 export default navigation;

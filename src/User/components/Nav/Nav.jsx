@@ -1,6 +1,6 @@
 'use client'
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect, useCallback } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -17,24 +17,63 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import navigation from '../../../Data/NavMenuData'
+import { userMenuItems } from '../../../Data/NavMenuData'
 import Logo from "../../../assets/UrbanEaseLogo.png"
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(true) // Changed to false for testing
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   const [openCategory, setOpenCategory] = useState(null)
   const [authPopoverOpen, setAuthPopoverOpen] = useState(false)
+  const [cartItemsCount, setCartItemsCount] = useState(0)
   const username = "Rahul"
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userMenuItems = [
-    { name: 'My Account', href: '/account' },
-    { name: 'My Orders', href: '/orders' },
-    { name: 'My Wishlist', href: '/wishlist' },
-    { name: 'My Rewards', href: '/rewards' },
-    { name: 'Gift Cards', href: '/gift-cards' },
-  ]
+  // Memoized function to calculate total cart items count
+  const calculateCartItemsCount = useCallback(() => {
+    try {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+      const totalCount = cartItems.reduce((total, item) => total + item.quantity, 0)
+      return totalCount
+    } catch (error) {
+      console.error('Error calculating cart items count:', error)
+      return 0
+    }
+  }, [])
+
+  // Update cart items count
+  const updateCartItemsCount = useCallback(() => {
+    const count = calculateCartItemsCount()
+    setCartItemsCount(count)
+  }, [calculateCartItemsCount])
+
+  // Single useEffect to handle all cart updates
+  useEffect(() => {
+    // Initial load
+    updateCartItemsCount()
+
+    const handleCartUpdate = () => {
+      updateCartItemsCount()
+    }
+
+    // Listen for custom cart update event
+    window.addEventListener('cartUpdated', handleCartUpdate)
+    
+    // Also listen for storage events (in case cart is updated in another tab)
+    const handleStorageChange = (e) => {
+      if (e.key === 'cartItems') {
+        updateCartItemsCount()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate)
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [updateCartItemsCount])
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -219,6 +258,23 @@ export default function Navigation() {
                   </div>
                 </>
               )}
+            </div>
+
+            {/* Mobile Cart Count */}
+            <div className="border-t border-gray-200 px-4 py-6">
+              <Link 
+                to="/cart" 
+                className="-m-2 flex items-center p-2"
+                onClick={() => setOpen(false)}
+              >
+                <ShoppingBagIcon
+                  aria-hidden="true"
+                  className="size-6 shrink-0 text-gray-400"
+                />
+                <span className="ml-2 text-sm font-medium text-gray-700">
+                  {cartItemsCount} {cartItemsCount === 1 ? 'item' : 'items'} in cart
+                </span>
+              </Link>
             </div>
           </DialogPanel>
         </div>
@@ -412,7 +468,7 @@ export default function Navigation() {
                           <Link
                             to="/register"
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                          >
+                        >
                             Create new account
                           </Link>
                         </div>
@@ -431,13 +487,19 @@ export default function Navigation() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link to="/cart" className="group -m-2 flex items-center p-2">
+                  <Link to="/cart" className="group -m-2 flex items-center p-2 relative">
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500 transition-colors duration-200"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800 transition-colors duration-200">0</span>
-                    <span className="sr-only">items in cart, view bag</span>
+                    {cartItemsCount > 0 && (
+                      <span className="absolute -top-1 -right-1 flex items-center justify-center bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 min-w-[20px]">
+                        {cartItemsCount > 99 ? '99+' : cartItemsCount}
+                      </span>
+                    )}
+                    <span className="sr-only">
+                      {cartItemsCount} {cartItemsCount === 1 ? 'item' : 'items'} in cart, view bag
+                    </span>
                   </Link>
                 </div>
               </div>

@@ -5,7 +5,14 @@ import MensProductCategoryPage from "./User/page/MensProductCategoryPage";
 import WomensProductCategoryPage from "./User/page/WomensProductCategoryPage";
 import Footer from "./User/components/Footer/Footer";
 import SearchProductPage from "./User/page/SearchProductPage";
-import Cart from "./User/page/Cart";
+import CartPage from "./User/page/CartPage";
+import UserProfilePage from "./User/page/UserProfilePage";
+import MyOrdersPage from "./User/page/MyOrdersPage";
+import MyWishlistPage from "./User/page/MyWishlistPage";
+import MyRewardsPage from "./User/page/MyRewardsPage";
+import GiftCardsPage from "./User/page/GiftCardsPage";
+import CheckOutPage from "./User/page/CheckOutPage";
+
 
 function App() {
   return (
@@ -26,10 +33,33 @@ function App() {
             path="/searchproduct"
             element={<SearchProductPage />}
           />
+          <Route path="/cart"
+            element={<CartPage/>}/>
           <Route
-            path="/cart"
-            element={<Cart/>}
+            path="/userprofile"
+            element={<UserProfilePage />}
           />
+          <Route
+            path="/myorderspage"
+            element={<MyOrdersPage />}
+          />
+          <Route
+            path="/mywishlistpage"
+            element={<MyWishlistPage />}
+          />
+          <Route
+            path="/myrewardspage"
+            element={<MyRewardsPage />}
+          />
+          <Route
+            path="/giftcardspage"
+            element={<GiftCardsPage />}
+          />
+          <Route
+            path="/checkoutpage"
+            element={<CheckOutPage />}
+          />
+          
         </Routes>
         <Footer />
       </div>

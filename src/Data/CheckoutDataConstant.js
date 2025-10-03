@@ -1,0 +1,1 @@
+export const CHECKOUT_STEPS = ['Shipping Address', 'Shipping Method', 'Payment Method', 'Review Order'];

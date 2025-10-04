@@ -1,10 +1,10 @@
 import React from 'react'
-import CheckOut from '../components/Checkout/Checkout'
+import Checkout from '../components/Checkout/Checkout'
 
 function CheckoutPage() {
   return (
     <>
-    <CheckOut/>
+    <Checkout/>
     </>
   )
 }

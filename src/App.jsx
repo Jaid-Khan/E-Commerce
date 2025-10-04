@@ -11,7 +11,7 @@ import MyOrdersPage from "./User/page/MyOrdersPage";
 import MyWishlistPage from "./User/page/MyWishlistPage";
 import MyRewardsPage from "./User/page/MyRewardsPage";
 import GiftCardsPage from "./User/page/GiftCardsPage";
-import CheckoutPage from "./User/page/CheckoutPage";
+import CheckOutPage from "./User/page/CheckOutPage";
 
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
           />
           <Route
             path="/checkoutpage"
-            element={<CheckoutPage />}
+            element={<CheckOutPage />}
           />
           
         </Routes>

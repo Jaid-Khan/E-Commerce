@@ -1,11 +1,11 @@
 import React from 'react'
 import CheckOut from '../components/Checkout/Checkout'
 
-function CheckOutPage() {
+function CheckoutPage() {
   return (
     <>
     <CheckOut/>
     </>
   )
 }
- export default CheckOutPage
+ export default CheckoutPage

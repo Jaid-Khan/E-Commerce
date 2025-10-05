@@ -4,7 +4,7 @@ const navigation = {
     {
       id: 'women',
       name: 'Women',
-      href: '/womensproduct',
+      href: '/womensproductcategorypage',
       featured: [
         {
           name: 'New Arrivals',
@@ -53,7 +53,7 @@ const navigation = {
     {
       id: 'men',
       name: 'Men',
-      href: '/mensproduct',
+      href: '/mensproductcategorypage',
       featured: [
         {
           name: 'New Arrivals',

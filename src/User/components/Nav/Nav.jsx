@@ -26,6 +26,7 @@ export default function Navigation() {
   const [openCategory, setOpenCategory] = useState(null)
   const [authPopoverOpen, setAuthPopoverOpen] = useState(false)
   const [cartItemsCount, setCartItemsCount] = useState(0)
+  const [activeCategory, setActiveCategory] = useState(null)
   const username = "Rahul"
   const navigate = useNavigate();
   const location = useLocation();
@@ -85,8 +86,49 @@ export default function Navigation() {
   }
 
   // Handle category click - navigate to category page
-  const handleCategoryClick = (categoryHref) => {
+  const handleCategoryClick = (categoryHref, categoryId = null) => {
+    setActiveCategory(categoryId);
     navigate(categoryHref);
+    
+    // Store the selected category in localStorage for product filtering
+    if (categoryId) {
+      localStorage.setItem('selectedCategory', categoryId);
+    }
+  }
+
+  // Handle subcategory click
+  const handleSubcategoryClick = (subcategory, gender) => {
+    // Map subcategory names to product categories
+    const categoryMap = {
+      'Tops': 'tops',
+      'Dresses': 'dresses', 
+      'Jeans': 'jeans',
+      'T-Shirts': 'tshirts',
+      'Shirts': 'shirts',
+      'Kurtas': 'kurtas',
+      'Kurtis': 'kurtis',
+      'Pants': 'pants',
+      'Sweaters': 'sweaters',
+      'Jackets': 'jackets',
+      'Activewear': 'activewear',
+      'Denim': 'jeans'
+    };
+    
+    const category = categoryMap[subcategory];
+    if (category) {
+      localStorage.setItem('selectedSubcategory', category);
+      localStorage.setItem('selectedGender', gender);
+    }
+    
+    // Navigate to the appropriate page
+    if (gender === 'women') {
+      navigate('/womensproduct');
+    } else {
+      navigate('/mensproduct');
+    }
+    
+    // Close mobile menu if open
+    setOpen(false);
   }
 
   return (
@@ -139,14 +181,13 @@ export default function Navigation() {
                             src={item.imageSrc}
                             className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75"
                           />
-                          <Link 
-                            to={item.href} 
+                          <button 
+                            onClick={() => handleCategoryClick(item.href, category.id)}
                             className="mt-6 block font-medium text-gray-900"
-                            onClick={() => setOpen(false)}
                           >
                             <span aria-hidden="true" className="absolute inset-0 z-10" />
                             {item.name}
-                          </Link>
+                          </button>
                           <p aria-hidden="true" className="mt-1">
                             Shop now
                           </p>
@@ -165,13 +206,12 @@ export default function Navigation() {
                         >
                           {section.items.map((item) => (
                             <li key={item.name} className="flow-root">
-                              <Link 
-                                to={item.href} 
-                                className="-m-2 block p-2 text-gray-500"
-                                onClick={() => setOpen(false)}
+                              <button 
+                                onClick={() => handleSubcategoryClick(item.name, category.id)}
+                                className="-m-2 block p-2 text-gray-500 text-left w-full"
                               >
                                 {item.name}
-                              </Link>
+                              </button>
                             </li>
                           ))}
                         </ul>
@@ -318,9 +358,9 @@ export default function Navigation() {
                     >
                       <div className="relative flex">
                         <button 
-                          onClick={() => handleCategoryClick(category.href)}
+                          onClick={() => handleCategoryClick(category.href, category.id)}
                           className={`group relative flex items-center justify-center text-sm font-medium transition-colors duration-300 ease-in-out ${
-                            isCategoryActive(category) 
+                            isCategoryActive(category) || activeCategory === category.id
                               ? 'text-indigo-600' 
                               : 'text-gray-700 hover:text-gray-800'
                           }`}
@@ -329,7 +369,7 @@ export default function Navigation() {
                           <span
                             aria-hidden="true"
                             className={`absolute inset-x-0 -bottom-px z-30 h-0.5 transition-all duration-300 ease-in-out ${
-                              isCategoryActive(category) || openCategory === category.id
+                              isCategoryActive(category) || activeCategory === category.id || openCategory === category.id
                                 ? 'bg-indigo-600 w-full' 
                                 : 'bg-transparent w-0 group-hover:w-full group-hover:bg-indigo-600'
                             }`}
@@ -354,10 +394,13 @@ export default function Navigation() {
                                       src={item.imageSrc}
                                       className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75 transition-opacity duration-300"
                                     />
-                                    <Link to={item.href} className="mt-6 block font-medium text-gray-900">
+                                    <button 
+                                      onClick={() => handleCategoryClick(item.href, category.id)}
+                                      className="mt-6 block font-medium text-gray-900"
+                                    >
                                       <span aria-hidden="true" className="absolute inset-0 z-10" />
                                       {item.name}
-                                    </Link>
+                                    </button>
                                     <p aria-hidden="true" className="mt-1">
                                       Shop now
                                     </p>
@@ -377,9 +420,12 @@ export default function Navigation() {
                                       >
                                       {section.items.map((item) => (
                                         <li key={item.name} className="flex">
-                                          <Link to={item.href} className="hover:text-gray-800 transition-colors duration-200">
+                                          <button 
+                                            onClick={() => handleSubcategoryClick(item.name, category.id)}
+                                            className="hover:text-gray-800 transition-colors duration-200 text-left"
+                                          >
                                             {item.name}
-                                          </Link>
+                                          </button>
                                         </li>
                                       ))}
                                     </ul>

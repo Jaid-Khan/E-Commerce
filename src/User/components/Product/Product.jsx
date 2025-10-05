@@ -1,8 +1,9 @@
 "use client";
 import ProductCard from "./ProductCard";
-import mensKurta from "../../../Data/MensKurtaData";
+import { products } from "../../../Data/AllProductsData";
 import { filters, singleFilter } from "../../../Data/ProductFilterData";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
@@ -43,8 +44,43 @@ export default function Product() {
     discount: [],
     stock: [],
   });
-  const [filteredProducts, setFilteredProducts] = useState(mensKurta);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortOption, setSortOption] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [selectedGender, setSelectedGender] = useState(null);
+  const location = useLocation();
+
+  // Handle category and subcategory selection
+  useEffect(() => {
+    // Get category from URL or localStorage
+    const path = location.pathname;
+    const storedCategory = localStorage.getItem('selectedCategory');
+    const storedSubcategory = localStorage.getItem('selectedSubcategory');
+    const storedGender = localStorage.getItem('selectedGender');
+    
+    if (path.includes('/womensproduct')) {
+      setSelectedCategory('women');
+      setSelectedGender('female');
+    } else if (path.includes('/mensproduct')) {
+      setSelectedCategory('men');
+      setSelectedGender('male');
+    } else if (storedCategory) {
+      setSelectedCategory(storedCategory);
+      setSelectedGender(storedCategory);
+    } else {
+      setSelectedCategory(null);
+      setSelectedGender(null);
+    }
+
+    if (storedSubcategory) {
+      setSelectedSubcategory(storedSubcategory);
+    }
+
+    // Clear the stored values after reading
+    localStorage.removeItem('selectedSubcategory');
+    localStorage.removeItem('selectedGender');
+  }, [location.pathname]);
 
   // Handle filter changes
   const handleFilterChange = (filterType, value, isChecked) => {
@@ -77,78 +113,79 @@ export default function Product() {
 
   // Apply filters and sorting
   useEffect(() => {
-    let results = [...mensKurta];
+    let results = [...products];
+
+    // Apply gender filter
+    if (selectedGender === 'female') {
+      results = results.filter(product => product.gender === 'female');
+    } else if (selectedGender === 'male') {
+      results = results.filter(product => product.gender === 'male');
+    }
+
+    // Apply specific category filter
+    if (selectedSubcategory) {
+      results = results.filter(product => product.category === selectedSubcategory);
+    }
 
     // Apply filters only if they are selected
-    const applyFilters = () => {
-      // Color filter
-      if (selectedFilters.color.length > 0) {
-        results = results.filter((product) =>
-          selectedFilters.color.includes(product.color.toLowerCase())
-        );
-      }
+    // Color filter
+    if (selectedFilters.color.length > 0) {
+      results = results.filter((product) =>
+        selectedFilters.color.includes(product.color.toLowerCase())
+      );
+    }
 
-      // Size filter
-      if (selectedFilters.size.length > 0) {
-        results = results.filter((product) =>
-          selectedFilters.size.some((size) => 
-            product.size && product.size.includes(size)
-          )
-        );
-      }
+    // Size filter
+    if (selectedFilters.size.length > 0) {
+      results = results.filter((product) =>
+        selectedFilters.size.some(
+          (size) => product.size && product.size.includes(size)
+        )
+      );
+    }
 
-      // Price filter
-      if (selectedFilters.price.length > 0) {
-        results = results.filter((product) => {
-          return selectedFilters.price.some((priceRange) => {
-            const [min, max] = priceRange.split("-").map(Number);
-            return product.price >= min && product.price <= max;
-          });
+    // Price filter
+    if (selectedFilters.price.length > 0) {
+      results = results.filter((product) => {
+        return selectedFilters.price.some((priceRange) => {
+          const [min, max] = priceRange.split("-").map(Number);
+          return product.price >= min && product.price <= max;
         });
-      }
+      });
+    }
 
-      // Discount filter - fixed logic
-      if (selectedFilters.discount.length > 0) {
-        results = results.filter((product) => {
-          return selectedFilters.discount.some((discount) => {
-            const discountPercent = parseInt(discount.replace('%', ''));
-            return product.discountPercent >= discountPercent;
-          });
+    // Discount filter - fixed logic
+    if (selectedFilters.discount.length > 0) {
+      results = results.filter((product) => {
+        return selectedFilters.discount.some((discount) => {
+          const discountPercent = parseInt(discount.replace("%", ""));
+          return product.discountPercent >= discountPercent;
         });
-      }
+      });
+    }
 
-      // Stock filter
-      if (selectedFilters.stock.length > 0) {
-        results = results.filter((product) => {
-          if (selectedFilters.stock.includes("In Stock")) {
-            return product.inStock !== false; // Consider undefined as in stock
-          }
-          if (selectedFilters.stock.includes("Out of Stock")) {
-            return product.inStock === false;
-          }
-          return true;
-        });
-      }
-
-      return results;
-    };
+    // Stock filter
+    if (selectedFilters.stock.length > 0) {
+      results = results.filter((product) => {
+        if (selectedFilters.stock.includes("In Stock")) {
+          return product.quantity > 0;
+        }
+        if (selectedFilters.stock.includes("Out of Stock")) {
+          return product.quantity === 0;
+        }
+        return true;
+      });
+    }
 
     // Apply sorting
-    const applySorting = (products) => {
-      if (sortOption === "Price: Low to High") {
-        return [...products].sort((a, b) => a.price - b.price);
-      } else if (sortOption === "Price: High to Low") {
-        return [...products].sort((a, b) => b.price - a.price);
-      }
-      return products;
-    };
-
-    // Apply filters first, then sorting
-    results = applyFilters();
-    results = applySorting(results);
+    if (sortOption === "Price: Low to High") {
+      results = [...results].sort((a, b) => a.price - b.price);
+    } else if (sortOption === "Price: High to Low") {
+      return [...results].sort((a, b) => b.price - a.price);
+    }
 
     setFilteredProducts(results);
-  }, [selectedFilters, sortOption]);
+  }, [selectedFilters, sortOption, selectedGender, selectedSubcategory]);
 
   // Handle sort selection
   const handleSortSelect = (optionName) => {
@@ -156,9 +193,37 @@ export default function Product() {
   };
 
   // Check if any filters are active
-  const areFiltersActive = Object.values(selectedFilters).some(
-    (filterArray) => filterArray.length > 0
-  ) || sortOption !== null;
+  const areFiltersActive =
+    Object.values(selectedFilters).some(
+      (filterArray) => filterArray.length > 0
+    ) || sortOption !== null;
+
+  // Get page title based on category and subcategory
+  const getPageTitle = () => {
+    const categoryTitles = {
+      'tops': "Women's Tops",
+      'dresses': "Women's Dresses", 
+      'jeans': "Jeans",
+      'tshirts': "T-Shirts",
+      'shirts': "Shirts",
+      'kurtas': "Men's Kurtas",
+      'kurtis': "Women's Kurtis",
+      'pants': "Pants",
+      'sweaters': "Sweaters",
+      'jackets': "Jackets",
+      'activewear': "Activewear"
+    };
+    
+    if (selectedSubcategory && categoryTitles[selectedSubcategory]) {
+      return categoryTitles[selectedSubcategory];
+    } else if (selectedGender === 'female') {
+      return "Women's Clothing";
+    } else if (selectedGender === 'male') {
+      return "Men's Clothing";
+    } else {
+      return "All Products";
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -359,7 +424,7 @@ export default function Product() {
         <main className="mx-auto px-4 sm:px-6 lg:px-20">
           <div className="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New Arrivals
+              {getPageTitle()}
             </h1>
 
             <div className="flex items-center">
@@ -598,7 +663,8 @@ export default function Product() {
                 {/* Active filters and results count */}
                 <div className="flex justify-between items-center mb-4">
                   <p className="text-gray-600">
-                    Showing {filteredProducts.length} of {mensKurta.length} products
+                    Showing {filteredProducts.length} of {products.length}{" "}
+                    products
                   </p>
                   {areFiltersActive && (
                     <button

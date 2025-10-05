@@ -12,7 +12,7 @@ import MyWishlistPage from "./User/page/MyWishlistPage";
 import MyRewardsPage from "./User/page/MyRewardsPage";
 import GiftCardsPage from "./User/page/GiftCardsPage";
 import CheckOutPage from "./User/page/CheckOutPage";
-
+import Product from "./User/components/Product/Product";
 
 function App() {
   return (
@@ -22,12 +22,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
+            path="/mensproductcategorypage"
+            element={<MensProductCategoryPage/>}
+          />
+          <Route
+            path="/womensproductcategorypage"
+            element={<WomensProductCategoryPage/>}
+          />
+          <Route
             path="/mensproduct"
-            element={<MensProductCategoryPage />}
+            element={<Product />}
           />
           <Route
             path="/womensproduct"
-            element={<WomensProductCategoryPage />}
+            element={<Product />}
           />
           <Route
             path="/searchproduct"

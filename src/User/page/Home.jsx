@@ -16,9 +16,6 @@ import MyOrdersPage from "./MyOrdersPage";
 function Home() {
   return (
     <div>
-      {/* <OrderConfirmationPage/> */}
-      {/* <Product/> */}
-      {/* <ProductDetails/> */}
       <HeroCarousel />
       <ShopByCategory />
       <NewArrivalsCarousel />

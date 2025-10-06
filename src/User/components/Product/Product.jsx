@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import { products } from "../../../Data/AllProductsData";
 import { filters, singleFilter } from "../../../Data/ProductFilterData";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
@@ -46,41 +46,10 @@ export default function Product() {
   });
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortOption, setSortOption] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
-  const [selectedGender, setSelectedGender] = useState(null);
-  const location = useLocation();
-
-  // Handle category and subcategory selection
-  useEffect(() => {
-    // Get category from URL or localStorage
-    const path = location.pathname;
-    const storedCategory = localStorage.getItem('selectedCategory');
-    const storedSubcategory = localStorage.getItem('selectedSubcategory');
-    const storedGender = localStorage.getItem('selectedGender');
-    
-    if (path.includes('/womensproduct')) {
-      setSelectedCategory('women');
-      setSelectedGender('female');
-    } else if (path.includes('/mensproduct')) {
-      setSelectedCategory('men');
-      setSelectedGender('male');
-    } else if (storedCategory) {
-      setSelectedCategory(storedCategory);
-      setSelectedGender(storedCategory);
-    } else {
-      setSelectedCategory(null);
-      setSelectedGender(null);
-    }
-
-    if (storedSubcategory) {
-      setSelectedSubcategory(storedSubcategory);
-    }
-
-    // Clear the stored values after reading
-    localStorage.removeItem('selectedSubcategory');
-    localStorage.removeItem('selectedGender');
-  }, [location.pathname]);
+  
+  // Get category from URL parameters
+  const { category, brand, featured } = useParams();
+  const location = useParams();
 
   // Handle filter changes
   const handleFilterChange = (filterType, value, isChecked) => {
@@ -111,23 +80,45 @@ export default function Product() {
     setSortOption(null);
   };
 
-  // Apply filters and sorting
+  // Apply filters and sorting based on URL parameters
   useEffect(() => {
     let results = [...products];
 
-    // Apply gender filter
-    if (selectedGender === 'female') {
+    // Apply URL-based filtering first
+    // Category filter from URL
+    if (category && category !== 'all') {
+      results = results.filter(product => product.category === category);
+    }
+
+    // Brand filter from URL
+    if (brand) {
+      const brandName = brand.replace(/-/g, ' ');
+      results = results.filter(product => 
+        product.brand.toLowerCase().includes(brandName.toLowerCase())
+      );
+    }
+
+    // Featured filter from URL
+    if (featured) {
+      const featureName = featured.replace(/-/g, ' ');
+      if (featureName.includes('new-arrivals')) {
+        // Filter new arrivals (you might want to add a 'new' flag to your products)
+        results = results.filter(product => product.id <= 20); // Example logic
+      } else if (featureName.includes('best-sellers') || featureName.includes('trending')) {
+        // Filter best sellers/trending
+        results = results.filter(product => product.discountPercent >= 40); // Example logic
+      }
+    }
+
+    // Gender-based filtering based on URL path
+    const path = window.location.pathname;
+    if (path.includes('/womensproduct')) {
       results = results.filter(product => product.gender === 'female');
-    } else if (selectedGender === 'male') {
+    } else if (path.includes('/mensproduct')) {
       results = results.filter(product => product.gender === 'male');
     }
 
-    // Apply specific category filter
-    if (selectedSubcategory) {
-      results = results.filter(product => product.category === selectedSubcategory);
-    }
-
-    // Apply filters only if they are selected
+    // Apply additional filters only if they are selected
     // Color filter
     if (selectedFilters.color.length > 0) {
       results = results.filter((product) =>
@@ -154,7 +145,7 @@ export default function Product() {
       });
     }
 
-    // Discount filter - fixed logic
+    // Discount filter
     if (selectedFilters.discount.length > 0) {
       results = results.filter((product) => {
         return selectedFilters.discount.some((discount) => {
@@ -181,11 +172,11 @@ export default function Product() {
     if (sortOption === "Price: Low to High") {
       results = [...results].sort((a, b) => a.price - b.price);
     } else if (sortOption === "Price: High to Low") {
-      return [...results].sort((a, b) => b.price - a.price);
+      results = [...results].sort((a, b) => b.price - a.price);
     }
 
     setFilteredProducts(results);
-  }, [selectedFilters, sortOption, selectedGender, selectedSubcategory]);
+  }, [selectedFilters, sortOption, category, brand, featured]);
 
   // Handle sort selection
   const handleSortSelect = (optionName) => {
@@ -198,7 +189,7 @@ export default function Product() {
       (filterArray) => filterArray.length > 0
     ) || sortOption !== null;
 
-  // Get page title based on category and subcategory
+  // Get page title based on URL parameters
   const getPageTitle = () => {
     const categoryTitles = {
       'tops': "Women's Tops",
@@ -213,16 +204,77 @@ export default function Product() {
       'jackets': "Jackets",
       'activewear': "Activewear"
     };
-    
-    if (selectedSubcategory && categoryTitles[selectedSubcategory]) {
-      return categoryTitles[selectedSubcategory];
-    } else if (selectedGender === 'female') {
-      return "Women's Clothing";
-    } else if (selectedGender === 'male') {
-      return "Men's Clothing";
-    } else {
-      return "All Products";
+
+    // Brand pages
+    if (brand) {
+      const brandName = brand.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+      return `${brandName} Products`;
     }
+
+    // Featured pages
+    if (featured) {
+      const featureName = featured.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+      return featureName;
+    }
+
+    // Category pages
+    if (category && categoryTitles[category]) {
+      return categoryTitles[category];
+    }
+
+    // Gender pages
+    const path = window.location.pathname;
+    if (path.includes('/womensproduct')) {
+      return "Women's Clothing";
+    } else if (path.includes('/mensproduct')) {
+      return "Men's Clothing";
+    }
+
+    return "All Products";
+  };
+
+  // Get active filter description
+  const getActiveFilterDescription = () => {
+    const path = window.location.pathname;
+    
+    if (category) {
+      const categoryNames = {
+        'tops': 'Tops',
+        'dresses': 'Dresses',
+        'jeans': 'Jeans',
+        'tshirts': 'T-Shirts',
+        'shirts': 'Shirts',
+        'kurtas': 'Kurtas',
+        'kurtis': 'Kurtis'
+      };
+      return `Showing ${categoryNames[category] || category}`;
+    }
+
+    if (brand) {
+      const brandName = brand.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+      return `Showing ${brandName} products`;
+    }
+
+    if (featured) {
+      const featureName = featured.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+      return `Showing ${featureName}`;
+    }
+
+    if (path.includes('/womensproduct')) {
+      return "Showing all women's products";
+    } else if (path.includes('/mensproduct')) {
+      return "Showing all men's products";
+    }
+
+    return 'Showing all products';
   };
 
   return (
@@ -266,6 +318,13 @@ export default function Product() {
                     <XMarkIcon aria-hidden="true" className="size-6" />
                   </button>
                 </div>
+              </div>
+
+              {/* Active filter info */}
+              <div className="px-4 py-3 bg-blue-50 border-b">
+                <p className="text-sm text-blue-700">
+                  {getActiveFilterDescription()}
+                </p>
               </div>
 
               {/* Filters */}
@@ -423,9 +482,14 @@ export default function Product() {
 
         <main className="mx-auto px-4 sm:px-6 lg:px-20">
           <div className="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              {getPageTitle()}
-            </h1>
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+                {getPageTitle()}
+              </h1>
+              <p className="mt-2 text-sm text-gray-600">
+                {getActiveFilterDescription()}
+              </p>
+            </div>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -507,6 +571,12 @@ export default function Product() {
                     )}
                     <FilterAltIcon />
                   </div>
+                </div>
+
+                {/* Active URL filter display */}
+                <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+                  <h4 className="font-medium text-blue-800 text-sm mb-2">Active Category:</h4>
+                  <p className="text-blue-700 text-sm">{getActiveFilterDescription()}</p>
                 </div>
 
                 <h3 className="sr-only">Categories</h3>
@@ -662,10 +732,12 @@ export default function Product() {
               <div className="lg:col-span-4 w-full">
                 {/* Active filters and results count */}
                 <div className="flex justify-between items-center mb-4">
-                  <p className="text-gray-600">
-                    Showing {filteredProducts.length} of {products.length}{" "}
-                    products
-                  </p>
+                  <div>
+                    <p className="text-gray-600">
+                      Showing {filteredProducts.length} of {products.length}{" "}
+                      products
+                    </p>
+                  </div>
                   {areFiltersActive && (
                     <button
                       onClick={clearAllFilters}
@@ -678,16 +750,16 @@ export default function Product() {
 
                 <div className="bg-white flex flex-wrap justify-center py-5">
                   {filteredProducts.length > 0 ? (
-                    filteredProducts.map((item, index) => (
+                    filteredProducts.map((item) => (
                       <ProductCard
-                        key={`${item.brand}-${item.title}-${index}`}
+                        key={item.id}
                         product={item}
                       />
                     ))
                   ) : (
                     <div className="w-full text-center py-10">
                       <p className="text-gray-500 text-lg">
-                        No products match your filters.
+                        No products found for "{category || brand || featured}".
                       </p>
                       <button
                         onClick={clearAllFilters}

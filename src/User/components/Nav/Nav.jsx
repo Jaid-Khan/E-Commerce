@@ -89,17 +89,13 @@ export default function Navigation() {
   const handleCategoryClick = (categoryHref, categoryId = null) => {
     setActiveCategory(categoryId);
     navigate(categoryHref);
-    
-    // Store the selected category in localStorage for product filtering
-    if (categoryId) {
-      localStorage.setItem('selectedCategory', categoryId);
-    }
   }
 
-  // Handle subcategory click
+  // Handle subcategory click - Navigate to products page with category parameter
   const handleSubcategoryClick = (subcategory, gender) => {
-    // Map subcategory names to product categories
+    // Map subcategory names to URL-friendly category slugs
     const categoryMap = {
+      // Women's categories
       'Tops': 'tops',
       'Dresses': 'dresses', 
       'Jeans': 'jeans',
@@ -111,23 +107,56 @@ export default function Navigation() {
       'Sweaters': 'sweaters',
       'Jackets': 'jackets',
       'Activewear': 'activewear',
-      'Denim': 'jeans'
+      'Denim': 'jeans',
+      'Browse All': 'all',
     };
     
-    const category = categoryMap[subcategory];
-    if (category) {
-      localStorage.setItem('selectedSubcategory', category);
-      localStorage.setItem('selectedGender', gender);
-    }
+    const category = categoryMap[subcategory] || subcategory.toLowerCase();
     
-    // Navigate to the appropriate page
+    console.log('Subcategory clicked:', { subcategory, gender, category });
+    
+    // Navigate to products page with category parameter
     if (gender === 'women') {
-      navigate('/womensproduct');
-    } else {
-      navigate('/mensproduct');
+      if (category === 'all') {
+        navigate('/womensproduct');
+      } else {
+        navigate(`/womensproduct/${category}`);
+      }
+    } else if (gender === 'men') {
+      if (category === 'all') {
+        navigate('/mensproduct');
+      } else {
+        navigate(`/mensproduct/${category}`);
+      }
     }
     
     // Close mobile menu if open
+    setOpen(false);
+  }
+
+  // Handle brand clicks
+  const handleBrandClick = (brand, gender) => {
+    const brandSlug = brand.toLowerCase().replace(/\s+/g, '-');
+    
+    if (gender === 'women') {
+      navigate(`/womensproduct/brand/${brandSlug}`);
+    } else {
+      navigate(`/mensproduct/brand/${brandSlug}`);
+    }
+    
+    setOpen(false);
+  }
+
+  // Handle featured category clicks
+  const handleFeaturedClick = (feature, gender) => {
+    const featureSlug = feature.name.toLowerCase().replace(/\s+/g, '-');
+    
+    if (gender === 'women') {
+      navigate(`/womensproduct/featured/${featureSlug}`);
+    } else {
+      navigate(`/mensproduct/featured/${featureSlug}`);
+    }
+    
     setOpen(false);
   }
 
@@ -182,7 +211,7 @@ export default function Navigation() {
                             className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75"
                           />
                           <button 
-                            onClick={() => handleCategoryClick(item.href, category.id)}
+                            onClick={() => handleFeaturedClick(item, category.id)}
                             className="mt-6 block font-medium text-gray-900"
                           >
                             <span aria-hidden="true" className="absolute inset-0 z-10" />
@@ -206,12 +235,21 @@ export default function Navigation() {
                         >
                           {section.items.map((item) => (
                             <li key={item.name} className="flow-root">
-                              <button 
-                                onClick={() => handleSubcategoryClick(item.name, category.id)}
-                                className="-m-2 block p-2 text-gray-500 text-left w-full"
-                              >
-                                {item.name}
-                              </button>
+                              {section.id === 'brands' ? (
+                                <button 
+                                  onClick={() => handleBrandClick(item.name, category.id)}
+                                  className="-m-2 block p-2 text-gray-500 text-left w-full"
+                                >
+                                  {item.name}
+                                </button>
+                              ) : (
+                                <button 
+                                  onClick={() => handleSubcategoryClick(item.name, category.id)}
+                                  className="-m-2 block p-2 text-gray-500 text-left w-full"
+                                >
+                                  {item.name}
+                                </button>
+                              )}
                             </li>
                           ))}
                         </ul>
@@ -395,7 +433,7 @@ export default function Navigation() {
                                       className="aspect-square w-full rounded-lg bg-gray-100 object-cover group-hover:opacity-75 transition-opacity duration-300"
                                     />
                                     <button 
-                                      onClick={() => handleCategoryClick(item.href, category.id)}
+                                      onClick={() => handleFeaturedClick(item, category.id)}
                                       className="mt-6 block font-medium text-gray-900"
                                     >
                                       <span aria-hidden="true" className="absolute inset-0 z-10" />
@@ -420,12 +458,21 @@ export default function Navigation() {
                                       >
                                       {section.items.map((item) => (
                                         <li key={item.name} className="flex">
-                                          <button 
-                                            onClick={() => handleSubcategoryClick(item.name, category.id)}
-                                            className="hover:text-gray-800 transition-colors duration-200 text-left"
-                                          >
-                                            {item.name}
-                                          </button>
+                                          {section.id === 'brands' ? (
+                                            <button 
+                                              onClick={() => handleBrandClick(item.name, category.id)}
+                                              className="hover:text-gray-800 transition-colors duration-200 text-left"
+                                            >
+                                              {item.name}
+                                            </button>
+                                          ) : (
+                                            <button 
+                                              onClick={() => handleSubcategoryClick(item.name, category.id)}
+                                              className="hover:text-gray-800 transition-colors duration-200 text-left"
+                                            >
+                                              {item.name}
+                                            </button>
+                                          )}
                                         </li>
                                       ))}
                                     </ul>

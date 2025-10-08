@@ -1374,7 +1374,7 @@ export const products = [
     quantity: 40,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Formal cotton shirt for office wear",
     gender: "male",
     category: "shirts"
@@ -1392,7 +1392,7 @@ export const products = [
     quantity: 35,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Comfortable casual shirt",
     gender: "male",
     category: "shirts"
@@ -1410,7 +1410,7 @@ export const products = [
     quantity: 25,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Premium linen shirt for summer",
     gender: "male",
     category: "shirts"
@@ -1428,7 +1428,7 @@ export const products = [
     quantity: 30,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Stylish checked pattern shirt",
     gender: "male",
     category: "shirts"
@@ -1446,7 +1446,7 @@ export const products = [
     quantity: 28,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Classic striped formal shirt",
     gender: "male",
     category: "shirts"
@@ -1464,7 +1464,7 @@ export const products = [
     quantity: 32,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Casual denim shirt",
     gender: "male",
     category: "shirts"
@@ -1482,7 +1482,7 @@ export const products = [
     quantity: 26,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Premium formal shirt",
     gender: "male",
     category: "shirts"
@@ -1500,7 +1500,7 @@ export const products = [
     quantity: 38,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Comfortable casual check shirt",
     gender: "male",
     category: "shirts"
@@ -1518,7 +1518,7 @@ export const products = [
     quantity: 22,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Stylish chambray shirt",
     gender: "male",
     category: "shirts"
@@ -1536,7 +1536,7 @@ export const products = [
     quantity: 34,
     topLevelCategory: "Men",
     secondLevelCategory: "Clothing",
-    thirdLevelCategory: "shirts",
+    thirdLevelCategory: "shirt",
     description: "Classic polo shirt",
     gender: "male",
     category: "shirts"

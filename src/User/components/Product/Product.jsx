@@ -111,6 +111,7 @@ export default function Product() {
         if (category === 'dresses' && product.category === 'dresses') return true;
         if (category === 'jeans' && product.category === 'jeans') return true;
         if (category === 'tshirts' && product.category === 'tshirts') return true;
+        if (category === 'shirts' && product.category === 'shirts') return true;
         if (category === 'pants' && product.category === 'pants') return true;
         if (category === 'sweaters' && product.category === 'sweaters') return true;
         if (category === 'jackets' && product.category === 'jackets') return true;
@@ -241,6 +242,7 @@ export default function Product() {
       'lahenga-cholis': 'Lahenga Cholis',
       'salwar-suits': 'Salwar Suits',
       'shararas': 'Shararas',
+      'shirts': 'Shirts',
       'track-pants': 'Track Pants',
 
     };
@@ -303,6 +305,7 @@ export default function Product() {
         'salwar-suits': 'Salwar suits',
         'shararas': 'Shararas',
         'track-pants': 'Track Pants',
+        'shirts': 'Shirts',
       };
       
       let description = `Showing ${categoryNames[category] || category}`;

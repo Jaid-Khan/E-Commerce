@@ -1,3 +1,5 @@
+// Data/navMenudata.js
+
 // Navigation data configuration
 const navigation = {
   categories: [
@@ -29,11 +31,10 @@ const navigation = {
             { name: 'Dresses', href: '/women/clothing/dresses' },
             { name: 'Pants', href: '/women/clothing/pants' },
             { name: 'Denim', href: '/women/clothing/denim' },
-            { name: 'Sweaters', href: '/women/clothing/sweaters' },
             { name: 'T-Shirts', href: '/women/clothing/t-shirts' },
+            { name: 'Sweaters', href: '/women/clothing/sweaters' },
             { name: 'Jackets', href: '/women/clothing/jackets' },
-            { name: 'Activewear', href: '/women/clothing/activewear' },
-            { name: 'Browse All', href: '/WomensProductCategoryPage' },
+            // { name: 'Browse All', href: '/WomensProductCategoryPage' },
           ],
         },
         {
@@ -77,11 +78,11 @@ const navigation = {
             { name: 'T-Shirts', href: '/men/clothing/t-shirts' },
             { name: 'Shirts', href: '/men/clothing/shirts' },
             { name: 'Pants', href: '/men/clothing/pants' },
+            { name: 'Kurtas', href: '/men/clothing/kurtas' },
             { name: 'Jeans', href: '/men/clothing/jeans' },
             { name: 'Sweaters', href: '/men/clothing/sweaters' },
             { name: 'Jackets', href: '/men/clothing/jackets' },
-            { name: 'Activewear', href: '/men/clothing/activewear' },
-            { name: 'Browse All', href: '/MensProductCategoryPage' },
+            // { name: 'Browse All', href: '/MensProductCategoryPage' },
           ],
         },
         {

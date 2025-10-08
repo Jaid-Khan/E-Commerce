@@ -44,7 +44,7 @@ const MensProductShopByCategoryCard = ({
           </div>
           <div className="flex flex-col items-end">
             <div className="text-xs font-medium text-gray-500 mb-1">
-              {category.url === "/mensproduct" ? "MEN'S" : "WOMEN'S"}
+              {category.url.includes("/mensproduct") ? "MEN'S" : "WOMEN'S"}
             </div>
             <Link 
               to={category.url}
@@ -61,7 +61,7 @@ const MensProductShopByCategoryCard = ({
       {/* Category Badge */}
       <div className="absolute top-3 left-3">
         <span className="px-2 py-1 bg-gray-900 text-white text-xs font-medium rounded">
-          {category.url === "/mensproduct" ? "MEN" : "WOMEN"}
+          {category.url.includes("/mensproduct") ? "MEN" : "WOMEN"}
         </span>
       </div>
     </div>

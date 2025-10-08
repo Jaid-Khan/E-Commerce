@@ -4,56 +4,64 @@ export const categories = [
     name: "Ethnic Wear",
     image: "https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/1/2/u/xl-sk-08-bilanza-original-imahfqvv2zetzu9r.jpeg?q=70",
     items: "20+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/ethnic-wear",
+    category: "ethnic-wear"
   },
   {
     id: 2,
     name: "Sarees",
     image: "https://rukminim2.flixcart.com/image/612/612/xif0q/sari/c/w/b/free-pratham-organza-001-rani-600-vichitra-unstitched-original-imahfzrpzesgk7xy.jpeg?q=70",
     items: "25+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/sarees",
+    category: "sarees"
   },
   {
     id: 3,
     name: "Lehenga Cholis",
-    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/shopsy-lehenga-choli/q/a/r/free-3-4-sleeve-semi-stitched-0-lehenga-choli-and-dupatta-set-original-imahddzatketggca.jpeg?q=70",
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/shopsy-lehenga-choli/g/8/w/free-3-4-sleeve-semi-stitched-0-lehenga-choli-and-dupatta-set-original-imahddzat45j6hjm.jpeg?q=70",
     items: "30+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/lahenga-cholis",
+    category: "lahenga-cholis"
   },
   {
     id: 4,
-    name: "Gowns",
-    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/gown/r/u/b/na-m-3-4-sleeve-stitched-101-yanishk-enterprises-na-original-imahce39xbhafndf.jpeg?q=70",
+    name: "Dresses",
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/dress/y/q/r/-original-imahff9hkv5bqwjv.jpeg?q=70",
     items: "15+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/dresses",
+    category: "dresses"
   },
   {
     id: 5,
     name: "Topwear",
     image: "https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/u/k/a/l-women-t-shirts-salujafabric-original-imah9hpgh8mpteug.jpeg?q=70",
     items: "18+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/tops",
+    category: "tops"
   },
   {
     id: 6,
-    name: "Palazzos",
-    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/trouser/k/d/h/l-palazzo-pack-5-czy-original-imahe3fh4dgmnxwa.jpeg?q=70",
+    name: "Pants",
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/trouser/i/y/l/32-233-db-aahwan-original-imahfyqxwtughmym.jpeg?q=70",
     items: "22+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/pants",
+    category: "pants"
   },
   {
     id: 7,
     name: "Salwar Suits",
     image: "https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/i/h/5/m-anamika-blue-r4mila-original-imahavruynbyumrj.jpeg?q=70",
     items: "15+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/salwar-suits",
+    category: "salwar-suits"
   },
   {
     id: 8,
     name: "Shararas",
-    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/trouser/o/j/d/free-sharara-green-1-arc-original-imahe6gqx4qmzeyv.jpeg?q=70",
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/f/o/p/s-mustard-sharara-suit-tf-trijal-fab-original-imahcdcfzrqhzcqg.jpeg?q=70",
     items: "12+ Products",
-    url:"/womensproduct",
+    url: "/womensproduct/shararas",
+    category: "shararas"
   }
 ];
 

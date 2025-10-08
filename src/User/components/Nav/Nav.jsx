@@ -91,48 +91,47 @@ export default function Navigation() {
     navigate(categoryHref);
   }
 
-  // Handle subcategory click - Navigate to products page with category parameter
-  const handleSubcategoryClick = (subcategory, gender) => {
-    // Map subcategory names to URL-friendly category slugs
-    const categoryMap = {
-      // Women's categories
-      'Tops': 'tops',
-      'Dresses': 'dresses', 
-      'Jeans': 'jeans',
-      'T-Shirts': 'tshirts',
-      'Shirts': 'shirts',
-      'Kurtas': 'kurtas',
-      'Kurtis': 'kurtis',
-      'Pants': 'pants',
-      'Sweaters': 'sweaters',
-      'Jackets': 'jackets',
-      'Activewear': 'activewear',
-      'Denim': 'jeans',
-      'Browse All': 'all',
-    };
-    
-    const category = categoryMap[subcategory] || subcategory.toLowerCase();
-    
-    console.log('Subcategory clicked:', { subcategory, gender, category });
-    
-    // Navigate to products page with category parameter
-    if (gender === 'women') {
-      if (category === 'all') {
-        navigate('/womensproduct');
-      } else {
-        navigate(`/womensproduct/${category}`);
-      }
-    } else if (gender === 'men') {
-      if (category === 'all') {
-        navigate('/mensproduct');
-      } else {
-        navigate(`/mensproduct/${category}`);
-      }
+ // Handle subcategory click - Navigate to products page with category parameter
+const handleSubcategoryClick = (subcategory, gender) => {
+  // Map subcategory names to URL-friendly category slugs
+  const categoryMap = {
+    // Women's categories
+    'Tops': 'tops',
+    'Dresses': 'dresses', 
+    'Jeans': 'jeans',
+    'T-Shirts': 'tshirts',
+    'Shirts': 'shirts',
+    'Kurtas': 'kurtas',
+    'Kurtis': 'kurtis',
+    'Pants': 'pants',
+    'Jackets': 'jackets',
+    'Denim': 'jeans',
+    'Sweaters': 'sweaters',
+    'Browse All': 'all',
+  };
+  
+  const category = categoryMap[subcategory] || subcategory.toLowerCase();
+  
+  console.log('Subcategory clicked:', { subcategory, gender, category });
+  
+  // Navigate to products page with category parameter
+  if (gender === 'women') {
+    if (category === 'all') {
+      navigate('/womensproduct');
+    } else {
+      navigate(`/womensproduct/${category}`);
     }
-    
-    // Close mobile menu if open
-    setOpen(false);
+  } else if (gender === 'men') {
+    if (category === 'all') {
+      navigate('/mensproduct');
+    } else {
+      navigate(`/mensproduct/${category}`);
+    }
   }
+  
+  // Close mobile menu if open
+  setOpen(false);
+}
 
   // Handle brand clicks
   const handleBrandClick = (brand, gender) => {

@@ -13,7 +13,7 @@ import MyRewardsPage from "./User/page/MyRewardsPage";
 import GiftCardsPage from "./User/page/GiftCardsPage";
 import CheckOutPage from "./User/page/CheckOutPage";
 import Product from "./User/components/Product/Product";
-import ProductDetails from './User/components/ProductDetails/ProductDetails'; // Fixed import path
+import ProductDetails from './User/components/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           {/* Home Route */}
           <Route path="/" element={<Home />} />
           
-          {/* Product Details Route - Should be before dynamic category routes */}
+          {/* Product Details Route */}
           <Route path="/product/:productId" element={<ProductDetails />} />
           
           {/* Category Pages */}

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const WomensProductShopByCategoryCard = ({ 
   category, 
   hoveredItem, 
-  setHoveredItem, 
-  handleCategoryClick 
+  setHoveredItem
 }) => {
   return (
     <div 
@@ -12,7 +12,6 @@ const WomensProductShopByCategoryCard = ({
       className="relative group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200"
       onMouseEnter={() => setHoveredItem(category.id)}
       onMouseLeave={() => setHoveredItem(null)}
-      onClick={() => handleCategoryClick(category.name)}
     >
       {/* Image Container */}
       <div className="relative overflow-hidden bg-gray-100">
@@ -28,9 +27,12 @@ const WomensProductShopByCategoryCard = ({
       {/* Hover Overlay Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
         <h3 className="text-xl font-bold text-white text-center mb-3">{category.name}</h3>
-        <button className="px-6 py-2 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 shadow-md">
+        <Link 
+          to={category.url}
+          className="px-6 py-2 bg-white text-gray-900 font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 shadow-md"
+        >
           Explore Collection
-        </button>
+        </Link>
       </div>
       
       {/* Bottom Content */}
@@ -42,11 +44,14 @@ const WomensProductShopByCategoryCard = ({
           </div>
           <div className="flex flex-col items-end">
             <div className="text-xs font-medium text-gray-500 mb-1">WOMEN'S</div>
-            <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+            <Link 
+              to={category.url}
+              className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

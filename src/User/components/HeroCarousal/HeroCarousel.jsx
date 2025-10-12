@@ -1,10 +1,12 @@
 // HeroCarousel.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import HeroCarouselData from '../../../Data/HeroCarouselData';
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate(); // Initialize navigate function
   const slides = HeroCarouselData;
 
   // Preload images
@@ -51,6 +53,11 @@ const HeroCarousel = () => {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
   };
 
+  // Handle CTA button click
+  const handleCtaClick = (targetPage) => {
+    navigate(targetPage);
+  };
+
   return (
     <div className="w-full font-['Inter', 'Helvetica Neue', sans-serif]">
       {/* Notification bar */}
@@ -86,7 +93,10 @@ const HeroCarousel = () => {
               <h1 className="text-3xl md:text-5xl font-bold mb-2.5 text-shadow-md">{slide.title}</h1>
               <h3 className="text-2.2xl md:text-3xl font-semibold mb-5 text-shadow-sm">{slide.subtitle}</h3>
               <p className="text-xl mb-7 max-w-[600px] mx-auto leading-relaxed">{slide.description}</p>
-              <button className="bg-white text-gray-800 border-none py-3.5 px-10 text-base font-semibold rounded-full cursor-pointer transition-all duration-300 ease-in-out shadow-md hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg">
+              <button 
+                className="bg-white text-gray-800 border-none py-3.5 px-10 text-base font-semibold rounded-full cursor-pointer transition-all duration-300 ease-in-out shadow-md hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg"
+                onClick={() => handleCtaClick(slide.targetPage)}
+              >
                 {slide.ctaText}
               </button>
             </div>
@@ -108,7 +118,7 @@ const HeroCarousel = () => {
         </button>
         
         {/* Indicators */}
-        {/* <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2.5 z-20">
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2.5 z-20">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -118,7 +128,7 @@ const HeroCarousel = () => {
               onClick={() => goToSlide(index)}
             />
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );

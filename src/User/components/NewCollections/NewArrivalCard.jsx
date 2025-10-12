@@ -1,26 +1,63 @@
+// NewArrivalCard.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NewArrivalCard = ({ item }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/product/${item.id}`);
+  };
+
   return (
-    <div className="group bg-white rounded-lg shadow-sm overflow-hidden mx-2 transition-all duration-300 hover:shadow-md">
-      <div className="relative overflow-hidden">
+    <div 
+      className="newArrivalCard bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 m-2"
+      onClick={handleCardClick}
+    >
+      <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
         <img 
-          src={item.image} 
-          alt={item.name}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
+          src={item.imageUrl || item.image} 
+          alt={item.title || item.name}
         />
-        <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
-          NEW
-        </div>
+        {item.discountPercent > 0 && (
+          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+            {item.discountPercent}% OFF
+          </div>
+        )}
       </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-1">{item.name}</h3>
-        <p className="text-gray-600 text-sm mb-2">{item.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-red-600 font-bold">{item.price}</span>
-          <button className="text-xs bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition-colors">
-            View Details
-          </button>
+      
+      <div className="p-3 sm:p-4">
+        <div className="mb-2">
+          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+            {item.brand || item.category}
+          </p>
+          <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">
+            {item.title || item.name}
+          </h3>
+        </div>
+        
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold text-gray-900">
+              ₹{item.discountedPrice || item.price}
+            </span>
+            {item.price && item.discountedPrice && (
+              <span className="text-sm text-gray-500 line-through">
+                ₹{item.price}
+              </span>
+            )}
+          </div>
+          
+          {item.color && (
+            <div className="flex items-center gap-1">
+              <div 
+                className="w-3 h-3 rounded-full border border-gray-300"
+                style={{ backgroundColor: item.color.toLowerCase() }}
+                title={item.color}
+              ></div>
+            </div>
+          )}
         </div>
       </div>
     </div>

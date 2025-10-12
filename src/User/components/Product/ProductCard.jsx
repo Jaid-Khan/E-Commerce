@@ -16,19 +16,25 @@ const ProductCard = ({ product }) => {
       <div className='h-[20rem]'> 
         <img 
           className='h-full w-full object-cover object-left-top' 
-          src={product.imageUrl} 
-          alt={product.title} 
+          src={product.imageUrl || product.image} 
+          alt={product.title || product.name} 
         />
       </div>
       <div className='textPart bg-white p-3'>
         <div>
-          <p className='font-bold opacity-60'>{product.brand}</p>
-          <p className='truncate'>{product.title}</p>
+          <p className='font-bold opacity-60'>{product.brand || product.category}</p>
+          <p className='truncate'>{product.title || product.name}</p>
         </div>
         <div className="flex items-center gap-2 mt-2">
-          <p className='font-semi-bold'>₹{product.discountedPrice}</p>
-          <p className='line-through opacity-50'>₹{product.price}</p>
-          <p className='text-green-700 font-semibold'>{product.discountPercent}% off</p>
+          <p className='font-semi-bold'>
+            {product.discountedPrice || product.price}
+          </p>
+          {product.price && product.discountedPrice && (
+            <>
+              <p className='line-through opacity-50'>₹{product.price}</p>
+              <p className='text-green-700 font-semibold'>{product.discountPercent}% off</p>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -6,159 +6,165 @@ This is the **frontend** of an E-Commerce application built with **React + Vite*
 ├── .git/                          # Git version control directory
 ├── .gitignore                     # Git ignore rules
 ├── README.md                      # Project documentation
-├── dist/                          # Production build output
+├── dist/                          # Build output directory
 ├── eslint.config.js               # ESLint configuration
 ├── index.html                     # Main HTML entry point
-├── node_modules/                  # npm dependencies
-├── package-lock.json              # Locked dependency versions
+├── node_modules/                  # Node.js dependencies
+├── package-lock.json              # Exact dependency tree
 ├── package.json                   # Project dependencies and scripts
 ├── public/                        # Static public assets
-│   └── vite.svg                   # Vite logo
+│   ├── UrbanEaseLogo.png          # Main application logo
+│   ├── _redirects                 # URL redirection rules
+│   ├── address-barlogo.png        # Browser address bar icon
+│   └── vite.svg                   # Vite framework logo
 ├── src/                           # Source code directory
 │   ├── App.css                    # Main application styles
-│   ├── App.jsx                    # Root application component
+│   ├── App.jsx                    # Main application component
 │   ├── Data/                      # Application data and constants
-│   │   ├── CartData.js                    # Shopping cart data and utilities
-│   │   ├── CheckoutData.js                # Checkout process data
-│   │   ├── CheckoutDataConstant.js        # Checkout constants
-│   │   ├── DiscoverMoreSearchPage.js      # Search page discovery data
-│   │   ├── FeaturedCategoryData.js        # Featured categories data
-│   │   ├── GiftCardData.js                # Gift card data and templates
-│   │   ├── HeroCarouselData.js            # Homepage hero carousel content
-│   │   ├── MenSectionHomeData.js          # Men's section homepage data
-│   │   ├── MensKurtaData.js               # Men's kurta products data
-│   │   ├── MensProductCategoryData.js     # Men's product category data
-│   │   ├── MyOrderData.js                 # User order history data
-│   │   ├── NavMenuData.js                 # Navigation menu structure
-│   │   ├── NewArrivalData.js              # New arrival products data
-│   │   ├── OrderData.js                   # Order management data
-│   │   ├── ProductFilterData.js           # Product filtering options
-│   │   ├── RewardsData.js                 # Loyalty rewards program data
-│   │   ├── ShopByCategory.js              # Shop by category data
-│   │   ├── TrendingNowData.js             # Trending products data
-│   │   ├── WishListData.js                # Wishlist items and utilities
-│   │   ├── WomenSectionHomeData.js        # Women's section homepage data
-│   │   └── WomensProductCategoryData.js   # Women's product category data
-│   ├── User/                      # User-related components and pages
+│   │   ├── AllProductsData.js     # Complete product catalog
+│   │   ├── CartData.js            # Shopping cart data
+│   │   ├── CheckoutData.js        # Checkout process data
+│   │   ├── CheckoutDataConstant.js # Checkout constants
+│   │   ├── DiscoverMoreSearchPage.js # Search page suggestions
+│   │   ├── FeaturedCategoryBrandsData.js # Featured brands data
+│   │   ├── GiftCardData.js        # Gift card information
+│   │   ├── HeroCarouselData.js    # Hero banner carousel data
+│   │   ├── MenSectionHomeData.js  # Men's section homepage data
+│   │   ├── MensProductCategoryData.js # Men's product categories
+│   │   ├── MyOrderData.js         # User order history data
+│   │   ├── NavMenuData.js         # Navigation menu structure
+│   │   ├── NewArrivalData.js      # New arrival products
+│   │   ├── OrderData.js           # Order management data
+│   │   ├── ProductFilterData.js   # Product filtering options
+│   │   ├── RewardsData.js         # Loyalty rewards data
+│   │   ├── ShopByCategory.js      # Category-based shopping data
+│   │   ├── TrendingNowData.js     # Trending products data
+│   │   ├── WishListData.js        # User wishlist data
+│   │   ├── WomenSectionHomeData.js # Women's section homepage data
+│   │   └── WomensProductCategoryData.js # Women's product categories
+│   ├── User/                      # User-facing components and pages
 │   │   ├── components/            # Reusable UI components
-│   │   │   ├── Cart/                      # Shopping cart components
-│   │   │   │   ├── CartItem.jsx           # Individual cart item component
-│   │   │   │   ├── CartItemList.jsx       # Cart items list component
-│   │   │   │   └── OrderSummary.jsx       # Order summary component
-│   │   │   ├── Checkout/                  # Checkout process components
-│   │   │   │   ├── Checkout.jsx           # Main checkout container
-│   │   │   │   ├── CheckoutHeader.jsx     # Checkout progress header
-│   │   │   │   ├── OrderSummary.jsx       # Checkout order summary
-│   │   │   │   ├── PaymentMethodStep.jsx  # Payment method selection
-│   │   │   │   ├── ReviewOrderStep.jsx    # Order review step
-│   │   │   │   ├── ShippingAddressStep.jsx # Shipping address form
-│   │   │   │   └── ShippingMethodStep.jsx # Shipping method selection
-│   │   │   ├── FeaturedBrands/            # Featured brands showcase
-│   │   │   │   ├── FeaturedCategoriesCarousel.jsx  # Categories carousel
-│   │   │   │   └── FeaturedCategoryCard.jsx        # Category card component
-│   │   │   ├── Footer/                    # Site footer component
-│   │   │   │   └── Footer.jsx             # Main footer component
-│   │   │   ├── GiftCard/                  # Gift card functionality
-│   │   │   │   ├── BuyGiftCard.jsx        # Gift card purchase component
-│   │   │   │   ├── GiftCard.jsx           # Main gift card component
-│   │   │   │   ├── GiftCardTabs.jsx       # Gift card tabs navigation
-│   │   │   │   └── RedeemGiftCard.jsx     # Gift card redemption
-│   │   │   ├── HeroCarousal/              # Homepage hero section
-│   │   │   │   └── HeroCarousel.jsx       # Main hero carousel component
-│   │   │   ├── HomePageBanners/           # Homepage promotional banners
-│   │   │   │   └── OffersBanner.jsx       # Special offers banner
-│   │   │   ├── MenSectionHomePage/        # Men's section on homepage
-│   │   │   │   ├── MenSectionCard.jsx     # Men's product card
-│   │   │   │   └── MenSectionCarousal.jsx # Men's section carousel
-│   │   │   ├── MensProductsCategory/      # Men's product category components
-│   │   │   │   ├── FeaturedProductsMensCategory/   # Featured products section
-│   │   │   │   │   └── MensProductCategoryFeaturedProducts.jsx  # Featured products
-│   │   │   │   ├── HeroSectionMensCategory/        # Men's category hero section
-│   │   │   │   │   └── MensProductCategoryHeroSection.jsx       # Hero section
-│   │   │   │   └── ShopByCategoryMensCategory/     # Shop by category section
-│   │   │   │       ├── MensProductShopByCategoryCard.jsx        # Category card
-│   │   │   │       └── MensProductsShopByCategory.jsx           # Categories list
-│   │   │   ├── MyOrders/                  # Order history and management
-│   │   │   │   ├── MyEmptyOrders.jsx      # Empty orders state
-│   │   │   │   ├── MyOrderCard.jsx        # Order summary card
-│   │   │   │   ├── MyOrderFilters.jsx     # Order filtering options
-│   │   │   │   ├── MyOrderItem.jsx        # Individual order item
-│   │   │   │   ├── MyOrderStatistics.jsx  # Order statistics
-│   │   │   │   └── MyOrderStatus.jsx      # Order status display
-│   │   │   ├── Nav/                       # Navigation components
-│   │   │   │   └── Nav.jsx                # Main navigation component
-│   │   │   ├── NewCollections/            # New arrivals section
-│   │   │   │   ├── NewArrivalCard.jsx     # New arrival product card
+│   │   │   ├── Brand/             # Brand-related components
+│   │   │   │   └── BrandCard.jsx  # Individual brand display card
+│   │   │   ├── Cart/              # Shopping cart components
+│   │   │   │   ├── CartItem.jsx   # Single cart item
+│   │   │   │   ├── CartItemList.jsx # Cart items list
+│   │   │   │   └── OrderSummary.jsx # Order summary component
+│   │   │   ├── Checkout/          # Checkout process components
+│   │   │   │   ├── Checkout.jsx   # Main checkout container
+│   │   │   │   ├── CheckoutHeader.jsx # Checkout progress header
+│   │   │   │   ├── OrderSummary.jsx # Checkout order summary
+│   │   │   │   ├── PaymentMethodStep.jsx # Payment method selection
+│   │   │   │   ├── ReviewOrderStep.jsx # Order review step
+│   │   │   │   ├── ShippingAddressStep.jsx # Address selection
+│   │   │   │   └── ShippingMethodStep.jsx # Shipping options
+│   │   │   ├── FeaturedBrands/    # Featured brands showcase
+│   │   │   │   ├── FeaturedCategoriesCarousel.jsx # Brands carousel
+│   │   │   │   └── FeaturedCategoryCard.jsx # Brand category card
+│   │   │   ├── Footer/            # Site footer
+│   │   │   │   └── Footer.jsx     # Main footer component
+│   │   │   ├── GiftCard/          # Gift card functionality
+│   │   │   │   ├── BuyGiftCard.jsx # Purchase gift cards
+│   │   │   │   ├── GiftCard.jsx   # Main gift card component
+│   │   │   │   ├── GiftCardTabs.jsx # Gift card navigation tabs
+│   │   │   │   └── RedeemGiftCard.jsx # Gift card redemption
+│   │   │   ├── HeroCarousal/      # Hero banner carousel
+│   │   │   │   └── HeroCarousel.jsx # Main hero carousel
+│   │   │   ├── HomePageBanners/   # Homepage promotional banners
+│   │   │   │   └── OffersBanner.jsx # Special offers banner
+│   │   │   ├── MenSectionHomePage/ # Men's section homepage
+│   │   │   │   ├── MenSectionCard.jsx # Men's product card
+│   │   │   │   └── MenSectionCarousal.jsx # Men's products carousel
+│   │   │   ├── MensProductsCategory/ # Men's category pages
+│   │   │   │   ├── FeaturedProductsMensCategory/
+│   │   │   │   │   └── MensProductCategoryFeaturedProducts.jsx
+│   │   │   │   ├── HeroSectionMensCategory/
+│   │   │   │   │   └── MensProductCategoryHeroSection.jsx
+│   │   │   │   └── ShopByCategoryMensCategory/
+│   │   │   │       ├── MensProductShopByCategoryCard.jsx
+│   │   │   │       └── MensProductsShopByCategory.jsx
+│   │   │   ├── MyOrders/          # Order history and management
+│   │   │   │   ├── MyEmptyOrders.jsx # Empty orders state
+│   │   │   │   ├── MyOrderCard.jsx # Order summary card
+│   │   │   │   ├── MyOrderFilters.jsx # Order filtering options
+│   │   │   │   ├── MyOrderItem.jsx # Individual order item
+│   │   │   │   ├── MyOrderStatistics.jsx # Order stats dashboard
+│   │   │   │   └── MyOrderStatus.jsx # Order status tracking
+│   │   │   ├── Nav/               # Navigation components
+│   │   │   │   └── Nav.jsx        # Main navigation bar
+│   │   │   ├── NewCollections/    # New arrivals section
+│   │   │   │   ├── NewArrivalCard.jsx # New product card
 │   │   │   │   └── NewArrivalCarousel.jsx # New arrivals carousel
-│   │   │   ├── OrderConfirmation/         # Order confirmation components
-│   │   │   │   ├── LoadingSpinner.jsx     # Loading indicator
-│   │   │   │   ├── NextSteps.jsx          # Post-order instructions
-│   │   │   │   ├── OrderHeader.jsx        # Order confirmation header
-│   │   │   │   ├── OrderSummary.jsx       # Order details summary
-│   │   │   │   ├── OrderTotal.jsx         # Order total calculation
-│   │   │   │   └── ShippingPaymentInfo.jsx # Shipping and payment info
-│   │   │   ├── Product/                   # Generic product components
-│   │   │   │   ├── Product.jsx            # Main product component
-│   │   │   │   └── ProductCard.jsx        # Product card component
-│   │   │   ├── ProductDetails/            # Product detail pages
-│   │   │   │   └── ProductDetails.jsx     # Product details component
-│   │   │   ├── Rewards/                   # Loyalty rewards program
-│   │   │   │   ├── ActivityList.jsx       # Rewards activity history
-│   │   │   │   ├── EarningMethods.jsx     # Points earning methods
-│   │   │   │   ├── LevelsList.jsx         # Reward levels/tiers
-│   │   │   │   ├── RewardCard.jsx         # Individual reward card
-│   │   │   │   ├── RewardsList.jsx        # Available rewards list
-│   │   │   │   ├── RewardsStats.jsx       # Rewards statistics
-│   │   │   │   └── RewardsTabs.jsx        # Rewards section tabs
-│   │   │   ├── SearchProduct/             # Product search functionality
-│   │   │   │   ├── DiscoverMore.jsx       # Search discovery section
-│   │   │   │   └── SearchBox.jsx          # Search input component
-│   │   │   ├── ShopByCategory/            # Category browsing
-│   │   │   │   ├── ShopByCategory.jsx     # Main shop by category component
-│   │   │   │   └── ShopByCategoryCard.jsx # Category card component
-│   │   │   ├── TrendingNow/               # Trending products section
-│   │   │   │   ├── TrendingNowCard.jsx    # Trending product card
-│   │   │   │   └── TrendingNowCarousal.jsx # Trending products carousel
-│   │   │   ├── UserProfile/               # User profile management
-│   │   │   │   ├── AddressBook.jsx        # Address management
-│   │   │   │   ├── ChangePassword.jsx     # Password change form
-│   │   │   │   ├── OrderHistory.jsx       # Order history display
-│   │   │   │   └── ProfileInfo.jsx        # Profile information
-│   │   │   ├── Wishlist/                  # Wishlist functionality
-│   │   │   │   └── WishlistPage.jsx       # Wishlist page component
-│   │   │   ├── WomenSectionHomePage/      # Women's section on homepage
-│   │   │   │   ├── WomenSectionCard.jsx   # Women's product card
-│   │   │   │   └── WomenSectionCarousal.jsx # Women's section carousel
-│   │   │   └── WomensProductsCategory/    # Women's product category components
-│   │   │       ├── FeaturedProductsWomensCategory/ # Featured products section
-│   │   │       │   ├── WomensProductCategoryFeaturedProducts.jsx      # Featured products
-│   │   │       │   └── WomensProductCategoryFeaturedProductsCard.jsx  # Product card
-│   │   │       ├── HeroSectionWomensCategory/      # Women's category hero section
-│   │   │       │   └── WomensProductCategoryHeroSection.jsx           # Hero section
-│   │   │       └── ShopByCategoryWomensCategory/   # Shop by category section
-│   │   │           ├── WomensProductShopByCategoryCard.jsx            # Category card
-│   │   │           └── WomensProductsShopByCategory.jsx               # Categories list
+│   │   │   ├── OrderConfirmation/ # Order confirmation components
+│   │   │   │   ├── LoadingSpinner.jsx # Loading indicator
+│   │   │   │   ├── NextSteps.jsx  # Post-order instructions
+│   │   │   │   ├── OrderHeader.jsx # Order confirmation header
+│   │   │   │   ├── OrderSummary.jsx # Confirmation order summary
+│   │   │   │   ├── OrderTotal.jsx # Order total breakdown
+│   │   │   │   └── ShippingPaymentInfo.jsx # Shipping & payment details
+│   │   │   ├── Product/           # Product listing components
+│   │   │   │   ├── Product.jsx    # Main product listing page
+│   │   │   │   └── ProductCard.jsx # Individual product card
+│   │   │   ├── ProductDetails/    # Product detail pages
+│   │   │   │   └── ProductDetails.jsx # Product details component
+│   │   │   ├── Rewards/           # Loyalty rewards program
+│   │   │   │   ├── ActivityList.jsx # Rewards activity history
+│   │   │   │   ├── EarningMethods.jsx # Ways to earn rewards
+│   │   │   │   ├── LevelsList.jsx # Rewards tiers/levels
+│   │   │   │   ├── RewardCard.jsx # Individual reward card
+│   │   │   │   ├── RewardsList.jsx # Available rewards list
+│   │   │   │   ├── RewardsStats.jsx # Rewards statistics
+│   │   │   │   └── RewardsTabs.jsx # Rewards navigation tabs
+│   │   │   ├── SearchProduct/     # Product search functionality
+│   │   │   │   ├── DiscoverMore.jsx # Search suggestions
+│   │   │   │   └── SearchBox.jsx  # Search input component
+│   │   │   ├── ShopByCategory/    # Category-based shopping
+│   │   │   │   ├── ShopByCategory.jsx # Main category component
+│   │   │   │   └── ShopByCategoryCard.jsx # Category card
+│   │   │   ├── TrendingNow/       # Trending products
+│   │   │   │   ├── TrendingNowCard.jsx # Trending product card
+│   │   │   │   └── TrendingNowCarousal.jsx # Trending carousel
+│   │   │   ├── UserProfile/       # User profile management
+│   │   │   │   ├── AddressBook.jsx # Saved addresses
+│   │   │   │   ├── ChangePassword.jsx # Password change form
+│   │   │   │   ├── OrderHistory.jsx # User order history
+│   │   │   │   └── ProfileInfo.jsx # Profile information
+│   │   │   ├── Wishlist/          # Wishlist functionality
+│   │   │   │   └── WishlistPage.jsx # Main wishlist page
+│   │   │   ├── WomenSectionHomePage/ # Women's section homepage
+│   │   │   │   ├── WomenSectionCard.jsx # Women's product card
+│   │   │   │   └── WomenSectionCarousal.jsx # Women's products carousel
+│   │   │   └── WomensProductsCategory/ # Women's category pages
+│   │   │       ├── FeaturedProductsWomensCategory/
+│   │   │       │   ├── WomensProductCategoryFeaturedProducts.jsx
+│   │   │       │   └── WomensProductCategoryFeaturedProductsCard.jsx
+│   │   │       ├── HeroSectionWomensCategory/
+│   │   │       │   └── WomensProductCategoryHeroSection.jsx
+│   │   │       └── ShopByCategoryWomensCategory/
+│   │   │           ├── WomensProductShopByCategoryCard.jsx
+│   │   │           └── WomensProductsShopByCategory.jsx
 │   │   └── page/                  # Main page components
-│   │       ├── CartPage.jsx               # Shopping cart page
-│   │       ├── CheckOutPage.jsx           # Checkout process page
-│   │       ├── GiftCardsPage.jsx          # Gift cards management page
-│   │       ├── Home.jsx                   # Homepage
-│   │       ├── MensProductCategoryPage.jsx # Men's product category page
-│   │       ├── MyOrdersPage.jsx           # Order history page
-│   │       ├── MyRewardsPage.jsx          # Rewards program page
-│   │       ├── MyWishlistPage.jsx         # Wishlist page
-│   │       ├── OrderConfirmationPage.jsx  # Order confirmation page
-│   │       ├── SearchProductPage.jsx      # Product search page
-│   │       ├── UserProfilePage.jsx        # User profile page
-│   │       └── WomensProductCategoryPage.jsx # Women's product category page
-│   ├── assets/                   # Static assets and images
-│   │   ├── UrbanEaseLogo.png     # Application logo
-│   │   └── react.svg             # React logo
-│   ├── context/                  # React Context providers
-│   │   └── OrderContext.jsx      # Order management context
-│   ├── index.css                 # Global CSS styles
-│   └── main.jsx                  # Application entry point
-└── vite.config.js                # Vite build configuration```
+│   │       ├── BrandPage.jsx      # Brands listing page
+│   │       ├── CartPage.jsx       # Shopping cart page
+│   │       ├── CheckOutPage.jsx   # Checkout process page
+│   │       ├── GiftCardsPage.jsx  # Gift cards page
+│   │       ├── Home.jsx           # Homepage
+│   │       ├── MensProductCategoryPage.jsx # Men's category page
+│   │       ├── MyOrdersPage.jsx   # My orders page
+│   │       ├── MyRewardsPage.jsx  # Rewards page
+│   │       ├── MyWishlistPage.jsx # Wishlist page
+│   │       ├── OrderConfirmationPage.jsx # Order confirmation page
+│   │       ├── SearchProductPage.jsx # Product search page
+│   │       ├── UserProfilePage.jsx # User profile page
+│   │       └── WomensProductCategoryPage.jsx # Women's category page
+│   ├── assets/                    # Static assets
+│   │   ├── UrbanEaseLogo.png      # Application logo
+│   │   └── react.svg              # React logo
+│   ├── context/                   # React context providers
+│   ├── index.css                  # Global styles
+│   └── main.jsx                   # Application entry point
+├── tree.txt                       # Directory structure file
+└── vite.config.js                 # Vite build configuration```
 
 ---
 

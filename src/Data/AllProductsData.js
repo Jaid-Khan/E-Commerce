@@ -310,7 +310,7 @@ export const products = [
   },
   {
     id: 18,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/l/g/g/m-blue-kurti-w-anisha-original-imahfyfkhhzvzzqg.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/j/2/j/m-086-blue-booti-kurta-physil-original-imah9pgkgahshfdq.jpeg?q=70",
     brand: "Anisha",
     title: "Blue Cotton Kurti",
     color: "Blue",
@@ -328,7 +328,7 @@ export const products = [
   },
   {
     id: 19,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/j/h/j/l-red-kurti-w-biba-original-imahfyfkhhgzhbzf.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/g/k/k/m-shortkr719r-hyten-original-imahgy5au8vxxhum.jpeg?q=70",
     brand: "Biba",
     title: "Red Party Wear Kurti",
     color: "Red",
@@ -490,7 +490,7 @@ export const products = [
   },
   {
     id: 28,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/s/h/s/m-cream-kurti-w-soch-original-imahfyfkhhqzhqzf.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/x/g/l/xl-34005338-anouk-rustic-original-imahg83pncacrawh.jpeg?q=70",
     brand: "Soch",
     title: "Cream Color Kurti",
     color: "Cream",
@@ -617,7 +617,7 @@ export const products = [
   },
   {
     id: 35,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/k/z/v/30-mj-rd-01-vebnor-original-imahz6fhvjzhwzhy.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/b/0/m/36-bomdt138xl52-666dj-d133-bene-kleed-original-imah94kzhk8wbbpy.jpeg?q=70",
     brand: "Jack & Jones",
     title: "Ripped Jeans",
     color: "Light Blue",
@@ -671,7 +671,7 @@ export const products = [
   },
   {
     id: 38,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/d/w/c/34-ud0033-unicorn-denim-original-imahz6fhzjfjggky.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/4/z/g/28-bootjeantowl-dgrey-urbano-original-imahenjjmymfhgwv.jpeg?q=70",
     brand: "Flying Machine",
     title: "Bootcut Jeans",
     color: "Dark Grey",

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../../../Data/AllProductsData';
+import newArrivalsData from '../../../Data/NewArrivalData';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { HeartIcon, ShoppingBagIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
@@ -14,8 +15,19 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
+  // Function to get product by ID from both datasets
+  const getProductById = (id) => {
+    // First check in main products
+    const mainProduct = products.find(p => p.id === parseInt(id));
+    if (mainProduct) return mainProduct;
+    
+    // If not found in main products, check in new arrivals
+    const newArrivalProduct = newArrivalsData.find(p => p.id === parseInt(id));
+    return newArrivalProduct;
+  };
+
   // Find the product by ID
-  const product = products.find(p => p.id === parseInt(productId));
+  const product = getProductById(productId);
 
   // If product not found, show error
   if (!product) {
@@ -65,13 +77,13 @@ export default function ProductDetails() {
       const newItem = {
         id: `${product.id}-${selectedSize}`,
         productId: product.id,
-        name: product.title,
-        price: product.discountedPrice,
+        name: product.title || product.name,
+        price: product.discountedPrice || product.price,
         color: product.color,
         size: selectedSize,
         quantity: 1,
-        image: product.imageUrl,
-        brand: product.brand
+        image: product.imageUrl || product.image,
+        brand: product.brand || product.category
       };
       updatedCartItems = [...currentCartItems, newItem];
     }
@@ -93,13 +105,13 @@ export default function ProductDetails() {
     const newItem = {
       id: `${quickProduct.id}-${defaultSize}`,
       productId: quickProduct.id,
-      name: quickProduct.title,
-      price: quickProduct.discountedPrice,
+      name: quickProduct.title || quickProduct.name,
+      price: quickProduct.discountedPrice || quickProduct.price,
       color: quickProduct.color,
       size: defaultSize,
       quantity: 1,
-      image: quickProduct.imageUrl,
-      brand: quickProduct.brand
+      image: quickProduct.imageUrl || quickProduct.image,
+      brand: quickProduct.brand || quickProduct.category
     };
 
     const updatedCartItems = [...currentCartItems, newItem];
@@ -144,8 +156,8 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="aspect-square w-full max-w-md overflow-hidden rounded-lg bg-gray-200">
               <img
-                src={product.imageUrl}
-                alt={product.title}
+                src={product.imageUrl || product.image}
+                alt={product.title || product.name}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -155,17 +167,19 @@ export default function ProductDetails() {
           <div className="lg:pl-8">
             <div className="lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {product.title}
+                {product.title || product.name}
               </h1>
-              <p className="mt-2 text-lg text-gray-600">{product.brand}</p>
+              <p className="mt-2 text-lg text-gray-600">{product.brand || product.category}</p>
             </div>
 
             {/* Price */}
             <div className="mt-6">
               <h2 className="sr-only">Product information</h2>
               <div className="flex items-center gap-4">
-                <p className="text-3xl tracking-tight text-gray-900">₹{product.discountedPrice}</p>
-                {product.discountPercent > 0 && (
+                <p className="text-3xl tracking-tight text-gray-900">
+                  {product.discountedPrice || product.price}
+                </p>
+                {product.price && product.discountedPrice && (
                   <>
                     <p className="text-xl text-gray-500 line-through">₹{product.price}</p>
                     <span className="bg-green-100 text-green-800 text-sm font-medium px-2 py-1 rounded">
@@ -177,14 +191,16 @@ export default function ProductDetails() {
             </div>
 
             {/* Color */}
-            <div className="mt-6">
-              <h3 className="text-sm font-medium text-gray-900">Color</h3>
-              <div className="mt-2">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
-                  {product.color}
-                </span>
+            {product.color && (
+              <div className="mt-6">
+                <h3 className="text-sm font-medium text-gray-900">Color</h3>
+                <div className="mt-2">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                    {product.color}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Sizes */}
             {product.size && product.size.length > 0 && (
@@ -244,17 +260,23 @@ export default function ProductDetails() {
               <h3 className="text-sm font-medium text-gray-900">Product Details</h3>
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                  {product.brand && (
+                    <li className="text-gray-600">
+                      <span className="text-gray-900">Brand:</span> {product.brand}
+                    </li>
+                  )}
+                  {product.category && (
+                    <li className="text-gray-600">
+                      <span className="text-gray-900">Category:</span> {product.category}
+                    </li>
+                  )}
+                  {product.gender && (
+                    <li className="text-gray-600">
+                      <span className="text-gray-900">Gender:</span> {product.gender}
+                    </li>
+                  )}
                   <li className="text-gray-600">
-                    <span className="text-gray-900">Brand:</span> {product.brand}
-                  </li>
-                  <li className="text-gray-600">
-                    <span className="text-gray-900">Category:</span> {product.category}
-                  </li>
-                  <li className="text-gray-600">
-                    <span className="text-gray-900">Gender:</span> {product.gender}
-                  </li>
-                  <li className="text-gray-600">
-                    <span className="text-gray-900">In Stock:</span> {product.quantity} units
+                    <span className="text-gray-900">In Stock:</span> {product.quantity || 'Available'}
                   </li>
                 </ul>
               </div>

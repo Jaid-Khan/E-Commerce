@@ -58,7 +58,7 @@ export const categories = [
   {
     id: 8,
     name: "Track Pants",
-    image: "https://images.unsplash.com/photo-1536842808328-b4b605905d65?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBhbnR8ZW58MHx8MHx8fDA%3D",
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/track-pant/r/z/t/34-dph-blck-open-bottom-0506fmenlwrs-daphne-maurier-original-imahgyjhpkuts3sc.jpeg?q=70",
     items: "12+ Products",
     url: "/mensproduct/track-pants",
     category: "track-pants"

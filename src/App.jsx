@@ -14,6 +14,7 @@ import GiftCardsPage from "./User/page/GiftCardsPage";
 import CheckOutPage from "./User/page/CheckOutPage";
 import Product from "./User/components/Product/Product";
 import ProductDetails from './User/components/ProductDetails/ProductDetails';
+import BrandsPage from "./User/page/BrandPage"; // Import the BrandsPage component
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         <Routes>
           {/* Home Route */}
           <Route path="/" element={<Home />} />
+          
+          {/* Brands Route */}
+          <Route path="/brands" element={<BrandsPage />} />
           
           {/* Product Details Route */}
           <Route path="/product/:productId" element={<ProductDetails />} />
@@ -47,6 +51,9 @@ function App() {
           <Route path="/mensproduct/:category" element={<Product />} />
           <Route path="/mensproduct/brand/:brand" element={<Product />} />
           <Route path="/mensproduct/featured/:featured" element={<Product />} />
+          
+          {/* General Brand Routes */}
+          <Route path="/brand/:brand" element={<Product />} />
           
           {/* General Product Routes */}
           <Route path="/products" element={<Product />} />

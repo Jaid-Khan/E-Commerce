@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import { products } from "../../../Data/AllProductsData";
 import { filters, singleFilter } from "../../../Data/ProductFilterData";
 import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
@@ -25,6 +25,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import newArrivalsData from "../../../Data/NewArrivalData";
 
 const sortOptions = [
   { name: "Price: Low to High", href: "#", current: false },
@@ -51,6 +52,18 @@ export default function Product() {
   // Get category from URL parameters and location
   const { category, brand, featured } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // Function to get product by ID from both datasets
+  const getProductById = (id) => {
+    // First check in main products
+    const mainProduct = products.find(product => product.id === parseInt(id));
+    if (mainProduct) return mainProduct;
+    
+    // If not found in main products, check in new arrivals
+    const newArrivalProduct = newArrivalsData.find(product => product.id === parseInt(id));
+    return newArrivalProduct;
+  };
 
   // Handle filter changes
   const handleFilterChange = (filterType, value, isChecked) => {
@@ -81,11 +94,39 @@ export default function Product() {
     setSortOption(null);
   };
 
+  // Brand mapping for URL slugs to actual brand names
+  const brandMapping = {
+    'zara': 'Zara',
+    'hm': 'H&M',
+    'forever21': 'Forever 21',
+    'nike': 'Nike',
+    'adidas': 'Adidas',
+    'levis': 'Levi\'s',
+    'ck': 'CALVIN KLEIN',
+    'tommy': 'Tommy Hilfiger'
+  };
+
   // Apply filters and sorting based on URL parameters
   useEffect(() => {
     setIsLoading(true);
     
     let results = [...products];
+
+    // Check if this is a product detail page
+    const pathParts = location.pathname.split('/');
+    const isProductDetailPage = pathParts[1] === 'product' && pathParts[2];
+    
+    if (isProductDetailPage) {
+      const productId = pathParts[2];
+      const product = getProductById(productId);
+      if (product) {
+        setFilteredProducts([product]);
+      } else {
+        setFilteredProducts([]);
+      }
+      setIsLoading(false);
+      return;
+    }
 
     // Get current path to determine gender
     const currentPath = location.pathname;
@@ -123,12 +164,22 @@ export default function Product() {
       });
     }
 
-    // Brand filter from URL
+    // Brand filter from URL - this is the key update for brand functionality
     if (brand) {
-      const brandName = brand.replace(/-/g, ' ');
-      results = results.filter(product => 
-        product.brand && product.brand.toLowerCase().includes(brandName.toLowerCase())
-      );
+      console.log('Filtering by brand:', brand);
+      const brandName = brandMapping[brand] || brand.replace(/-/g, ' ');
+      results = results.filter(product => {
+        if (!product.brand) return false;
+        
+        // Exact match for known brands
+        if (brandMapping[brand] && product.brand.toLowerCase() === brandMapping[brand].toLowerCase()) {
+          return true;
+        }
+        
+        // Partial match for other brands
+        return product.brand.toLowerCase().includes(brandName.toLowerCase());
+      });
+      console.log('Brand filtered results:', results.length, 'for brand:', brandName);
     }
 
     // Featured filter from URL
@@ -198,7 +249,7 @@ export default function Product() {
       results = [...results].sort((a, b) => b.price - a.price);
     }
 
-    console.log('Filtered results:', results.length);
+    console.log('Final filtered results:', results.length);
     setFilteredProducts(results);
     setIsLoading(false);
   }, [selectedFilters, sortOption, category, brand, featured, location.pathname]);
@@ -244,7 +295,6 @@ export default function Product() {
       'shararas': 'Shararas',
       'shirts': 'Shirts',
       'track-pants': 'Track Pants',
-
     };
 
     // Get current path for gender-specific titles
@@ -252,9 +302,16 @@ export default function Product() {
     const isWomenSection = currentPath.includes('/womensproduct');
     const isMenSection = currentPath.includes('/mensproduct');
 
-    // Brand pages
+    // Check if it's a product detail page
+    const pathParts = location.pathname.split('/');
+    if (pathParts[1] === 'product' && pathParts[2]) {
+      const product = getProductById(pathParts[2]);
+      return product ? (product.title || product.name) : "Product Details";
+    }
+
+    // Brand pages - this is the key update for brand functionality
     if (brand) {
-      const brandName = brand.split('-').map(word => 
+      const brandName = brandMapping[brand] || brand.split('-').map(word => 
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(' ');
       return `${brandName} Products`;
@@ -285,10 +342,33 @@ export default function Product() {
 
   // Get active filter description
   const getActiveFilterDescription = () => {
+    // Check if it's a product detail page
+    const pathParts = location.pathname.split('/');
+    if (pathParts[1] === 'product' && pathParts[2]) {
+      return "Product details";
+    }
+
     const currentPath = location.pathname;
     const isWomenSection = currentPath.includes('/womensproduct');
     const isMenSection = currentPath.includes('/mensproduct');
     
+    // Brand description - this is the key update for brand functionality
+    if (brand) {
+      const brandName = brandMapping[brand] || brand.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
+      let description = `Showing ${brandName} products`;
+      
+      // Add gender context
+      if (isWomenSection) {
+        description = `Showing Women's ${brandName} products`;
+      } else if (isMenSection) {
+        description = `Showing Men's ${brandName} products`;
+      }
+      
+      return description;
+    }
+
     if (category) {
       const categoryNames = {
         'tops': 'Tops',
@@ -318,13 +398,6 @@ export default function Product() {
       }
       
       return description;
-    }
-
-    if (brand) {
-      const brandName = brand.split('-').map(word => 
-        word.charAt(0).toUpperCase() + word.slice(1)
-      ).join(' ');
-      return `Showing ${brandName} products`;
     }
 
     if (featured) {

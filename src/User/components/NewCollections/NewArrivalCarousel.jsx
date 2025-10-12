@@ -1,7 +1,8 @@
+// NewArrivalCarousel.jsx
 import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import NewArrivalCard from './NewArrivalCard';
-import newArrivalsData from '../../../Data/NewArrivalData';
+import { newArrivalsData } from '../../../Data/NewArrivalData';
 
 const NewArrivalCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

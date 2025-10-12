@@ -102,7 +102,7 @@ const navigation = {
   ],
   pages: [
     { name: 'Sale', href: '/sale' },
-    { name: 'Brands', href: '/brand' },
+    { name: 'Brands', href: '/brands' },
   ],
 };
 

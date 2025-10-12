@@ -6,16 +6,15 @@ function Footer() {
     <footer className="bg-gray-800 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-lg font-bold mb-4">Men's Fashion</h3>
+          <h3 className="text-lg font-bold mb-4">Men's & Women's Fashion</h3>
           <p className="text-gray-400">Premium quality clothing for the modern mens and womens.</p>
         </div>
         <div>
           <h3 className="text-lg font-bold mb-4">Shop</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/new-arrivals" className="hover:text-white">New Arrivals</Link></li>
-            <li><Link to="/trending" className="hover:text-white">Trending Now</Link></li>
             <li><Link to="/mensproduct" className="hover:text-white">Mens Clothing</Link></li>
             <li><Link to="/womensproduct" className="hover:text-white">Womens Clothing</Link></li>
+            <li><Link to="/brands" className="hover:text-white">Brands</Link></li>
           </ul>
         </div>
         <div>

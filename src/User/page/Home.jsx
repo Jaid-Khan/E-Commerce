@@ -12,10 +12,12 @@ import OrderConfirmationPage from "../page/OrderConfirmationPage";
 import UserProfilePage from "./UserProfilePage";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import MyOrdersPage from "./MyOrdersPage";
+import BrandPage from "./BrandPage";
 
 function Home() {
   return (
     <div>
+      {/* <BrandPage /> */}
       <HeroCarousel />
       <ShopByCategory />
       <NewArrivalsCarousel />

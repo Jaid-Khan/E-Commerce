@@ -8,15 +8,6 @@ const MenCard = ({ item }) => {
   const handleCardClick = () => {
     if (item && item.id) {
       navigate(`/product/${item.id}`);
-      window.scrollTo(0, 0);
-    }
-  };
-
-  const handleQuickView = (e) => {
-    e.stopPropagation();
-    if (item && item.productData) {
-      console.log('Quick view product:', item.productData.title);
-      // You can implement a modal here or navigate to a quick view route
     }
   };
 
@@ -31,60 +22,64 @@ const MenCard = ({ item }) => {
 
   return (
     <div 
-      className="flex-shrink-0 px-2 w-1/2 sm:w-1/3 md:w-1/4 cursor-pointer"
+      className="menCard bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 m-2"
       onClick={handleCardClick}
     >
-      <div className="bg-white rounded-none overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group relative">
-        <div className="h-48 sm:h-56 md:h-64 overflow-hidden relative">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            onError={handleImageError}
-            loading="lazy"
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent h-16"></div>
-          
-          {/* Quick View Button */}
-          <button
-            onClick={handleQuickView}
-            className="absolute top-2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0"
-            title="Quick View"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </button>
-
-          {/* Discount Badge */}
-          {/* {item.discount > 0 && (
-            <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              {item.discount}% OFF
-            </div>
-          )} */}
-
-          {/* New Badge */}
-          {item.isNew && (
-            <div className="absolute top-2 right-10 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </div>
-          )}
-        </div>
+      <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+        <img 
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
+          src={item.image} 
+          alt={item.name}
+          onError={handleImageError}
+          loading="lazy"
+        />
         
-        <div className="p-4 text-center">
-          <h3 className="text-md font-bold text-gray-900 uppercase tracking-tight mb-1 group-hover:text-red-600 transition-colors duration-200 line-clamp-1">
+        {/* Discount Badge */}
+        {item.discount > 0 && (
+          <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+            {item.discount}% OFF
+          </div>
+        )}
+
+        {/* New Badge */}
+        {item.isNew && (
+          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+            NEW
+          </div>
+        )}
+      </div>
+      
+      <div className="p-3 sm:p-4">
+        <div className="mb-2">
+          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+            {item.category || 'Men'}
+          </p>
+          <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">
             {item.name}
           </h3>
-          <div className="flex items-center justify-center space-x-2 mb-1">
-            <span className="text-lg font-bold text-red-600">{item.price}</span>
+        </div>
+        
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold text-gray-900">
+              {item.price}
+            </span>
             {item.originalPrice && (
-              <span className="text-sm text-gray-500 line-through">{item.originalPrice}</span>
+              <span className="text-sm text-gray-500 line-through">
+                {item.originalPrice}
+              </span>
             )}
           </div>
-          {/* <p className="text-sm text-gray-700 font-medium">
-            {item.discount > 0 ? `Save ${item.discount}%` : "Special offer"}
-          </p> */}
+          
+          {item.color && (
+            <div className="flex items-center gap-1">
+              <div 
+                className="w-3 h-3 rounded-full border border-gray-300"
+                style={{ backgroundColor: item.color.toLowerCase() }}
+                title={item.color}
+              ></div>
+            </div>
+          )}
         </div>
       </div>
     </div>

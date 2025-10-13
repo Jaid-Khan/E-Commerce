@@ -8,13 +8,26 @@ const TrendingNowCarousal = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [itemsPerView, setItemsPerView] = useState(4);
+  const transitionDuration = 300;
 
-  // Responsive itemsPerView
+  // Create duplicated slides for infinite effect
+  const duplicatedItems = [
+    ...TrendingNowData,
+    ...TrendingNowData,
+    ...TrendingNowData,
+  ];
+
+  const totalSlides = duplicatedItems.length;
+  const actualItemsCount = TrendingNowData.length;
+
+  // Handle responsive items per view
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setItemsPerView(2);
+        setItemsPerView(1);
       } else if (window.innerWidth < 768) {
+        setItemsPerView(2);
+      } else if (window.innerWidth < 1024) {
         setItemsPerView(3);
       } else {
         setItemsPerView(4);
@@ -25,18 +38,6 @@ const TrendingNowCarousal = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const transitionDuration = 300;
-
-  // Infinite effect (duplicated categories)
-  const duplicatedCategories = [
-    ...TrendingNowData,
-    ...TrendingNowData,
-    ...TrendingNowData,
-  ];
-
-  const totalSlides = duplicatedCategories.length;
-  const actualItemsCount = TrendingNowData.length;
 
   const nextSlide = () => {
     setIsTransitioning(true);
@@ -77,7 +78,7 @@ const TrendingNowCarousal = () => {
     setCurrentIndex(index);
   };
 
-  // Auto-scroll
+  // Auto-scroll effect
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -97,64 +98,61 @@ const TrendingNowCarousal = () => {
         </h2>
 
         <div className="relative">
-          {/* Desktop Navigation */}
+          {/* Navigation Arrows - Visible on all screens with different sizes */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-1 sm:p-2 shadow-md hover:bg-gray-100 focus:outline-none hidden md:block"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-md hover:bg-gray-100 focus:outline-none transition-all duration-200
+                      md:p-2 p-1 md:left-0"
             aria-label="Previous slide"
           >
-            <ChevronLeftIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-gray-700" />
+            <ChevronLeftIcon className="md:h-5 md:w-5 h-4 w-4 text-gray-700" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-1 sm:p-2 shadow-md hover:bg-gray-100 focus:outline-none hidden md:block"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-md hover:bg-gray-100 focus:outline-none transition-all duration-200
+                      md:p-2 p-1 md:right-0"
             aria-label="Next slide"
           >
-            <ChevronRightIcon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-gray-700" />
+            <ChevronRightIcon className="md:h-5 md:w-5 h-4 w-4 text-gray-700" />
           </button>
 
-          {/* Carousel */}
-          <div className="overflow-hidden">
+          {/* Carousel Container */}
+          <div className="overflow-hidden md:px-8 px-4">
             <div
-              className="flex"
+              className="flex transition-transform duration-300 ease-in-out"
               style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / itemsPerView)
-                }%)`,
+                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
                 transition: isTransitioning
                   ? `transform ${transitionDuration}ms ease-in-out`
                   : "none",
               }}
             >
-              {duplicatedCategories.map((category, index) => (
-                <TrendingNowCard
-                  key={`${category.id}-${index}`}
-                  category={category}
-                />
+              {duplicatedItems.map((item, index) => (
+                <div
+                  key={`${item.id}-${index}`}
+                  className="flex-shrink-0"
+                  style={{ width: `${100 / itemsPerView}%` }}
+                >
+                  <TrendingNowCard category={item} />
+                </div>
               ))}
             </div>
           </div>
         </div>
 
         {/* Dots Indicator */}
-        {/* <div className="flex justify-center mt-4 sm:mt-6 hidden md:flex">          
-          {TrendingNowData
-            .slice(0, Math.ceil(TrendingNowData.length / itemsPerView))
-            .map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index * itemsPerView)}
-                className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full mx-1 ${
-                  Math.floor(currentIndex / itemsPerView) %
-                    Math.ceil(actualItemsCount / itemsPerView) ===
-                  index
-                    ? "bg-black"
-                    : "bg-gray-300"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+        {/* <div className="flex justify-center mt-6">
+          {TrendingNowData.slice(0, Math.ceil(actualItemsCount / itemsPerView)).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index * itemsPerView)}
+              className={`h-2 w-2 rounded-full mx-1 ${
+                Math.floor(currentIndex % actualItemsCount / itemsPerView) === index ? 'bg-black' : 'bg-gray-300'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div> */}
       </div>
     </section>

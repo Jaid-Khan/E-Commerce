@@ -64,33 +64,3 @@ export const categories = [
     category: "track-pants"
   }
 ];
-export const featuredProducts = [
-  { 
-    id: 1, 
-    name: 'Premium Men\'s T-Shirt', 
-    price: '$89.99', 
-    description: 'Classic fit, premium material', 
-    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VHNoaXJ0c3xlbnwwfHwwfHx8MA%3D%3D' 
-  },
-  { 
-    id: 2, 
-    name: 'Slim Fit Jeans', 
-    price: '$79.99', 
-    description: 'Comfortable and stylish', 
-    image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80' 
-  },
-  { 
-    id: 3, 
-    name: 'Leather Jackets', 
-    price: '$99.99', 
-    description: 'Modern design', 
-    image: 'https://images.unsplash.com/photo-1578198576866-7e0ba6078128?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fExlYXRoZXIlMjBKYWNrZXRzfGVufDB8fDB8fHww' 
-  },
-  { 
-    id: 4, 
-    name: 'Hoodies', 
-    price: '$69.99', 
-    description: 'Perfect for everyday wear', 
-    image: 'https://images.unsplash.com/photo-1542406775-ade58c52d2e4?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG9vZGllfGVufDB8fDB8fHww' 
-  }
-];

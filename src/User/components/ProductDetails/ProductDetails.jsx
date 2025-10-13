@@ -98,7 +98,9 @@ export default function ProductDetails() {
     window.dispatchEvent(new Event('cartUpdated'));
   };
 
-  const handleQuickAdd = (quickProduct) => {
+  const handleQuickAdd = (quickProduct, e) => {
+    e.stopPropagation(); // Prevent card click event when clicking quick add
+    
     const currentCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const defaultSize = quickProduct.size && quickProduct.size.length > 0 ? quickProduct.size[0] : 'One Size';
 
@@ -122,6 +124,11 @@ export default function ProductDetails() {
     setTimeout(() => {
       setShowSuccessMessage(false);
     }, 3000);
+  };
+
+  const handleCardClick = (productId) => {
+    navigate(`/product/${productId}`);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -291,8 +298,12 @@ export default function ProductDetails() {
 
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
               {similarProducts.map((similarProduct) => (
-                <div key={similarProduct.id} className="group relative">
-                  <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
+                <div 
+                  key={similarProduct.id} 
+                  className="group relative cursor-pointer"
+                  onClick={() => handleCardClick(similarProduct.id)}
+                >
+                  <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80 group-hover:opacity-75 transition-opacity">
                     <img
                       src={similarProduct.imageUrl}
                       alt={similarProduct.title}
@@ -301,18 +312,8 @@ export default function ProductDetails() {
                   </div>
                   <div className="mt-4 flex justify-between">
                     <div>
-                      <h3 className="text-sm text-gray-700">
-                        <a 
-                          href="#" 
-                          onClick={(e) => {
-                            e.preventDefault();
-                            navigate(`/product/${similarProduct.id}`);
-                            window.scrollTo(0, 0);
-                          }}
-                          className="hover:text-gray-900"
-                        >
-                          {similarProduct.title}
-                        </a>
+                      <h3 className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
+                        {similarProduct.title}
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">{similarProduct.brand}</p>
                     </div>
@@ -325,7 +326,7 @@ export default function ProductDetails() {
                   </div>
                   <div className="mt-2">
                     <button
-                      onClick={() => handleQuickAdd(similarProduct)}
+                      onClick={(e) => handleQuickAdd(similarProduct, e)}
                       disabled={similarProduct.quantity === 0}
                       className={classNames(
                         similarProduct.quantity === 0

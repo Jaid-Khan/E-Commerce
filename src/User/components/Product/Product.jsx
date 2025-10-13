@@ -147,6 +147,7 @@ export default function Product() {
         // Handle different category naming conventions for women
         if (category === 'sarees' && product.category === 'sarees') return true;
         if (category === 'kurtis' && product.category === 'kurtis') return true;
+        if (category === 'kurtas' && product.category === 'kurtas') return true;
         if (category === 'ethnic-wear' && product.category === 'ethnic-wear') return true;
         if (category === 'tops' && product.category === 'tops') return true;
         if (category === 'dresses' && product.category === 'dresses') return true;
@@ -285,6 +286,7 @@ export default function Product() {
       'jeans': "Women's Jeans",
       'tshirts': "Women's T-Shirts",
       'kurtis': "Women's Kurtis",
+      'kurtas': "Men's Kurtas",
       'pants': "Women's Pants",
       'jackets': "Women's Jackets",
       'sweaters': "Women's Sweaters",
@@ -376,6 +378,7 @@ export default function Product() {
         'jeans': 'Jeans',
         'tshirts': 'T-Shirts',
         'kurtis': 'Kurtis',
+        'kurtas': 'Kurtas',
         'pants': 'Pants',
         'sweaters': 'Sweaters',
         'jackets': 'Jackets',

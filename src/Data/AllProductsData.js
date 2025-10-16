@@ -274,7 +274,7 @@ export const products = [
   // Women's Kurtis (15 items)
   {
     id: 16,
-    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/v/7/c/s-lakhnawi-rose-romj-original-imahfyfk4dyfh4y2.jpeg?q=70",
+    imageUrl: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/t/r/f/l-iestr9788-indo-era-original-imahbybmyams98yh.jpeg?q=70",
     brand: "Biba",
     title: "Embroidered Anarkali Kurta",
     color: "Pink",

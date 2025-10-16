@@ -2,7 +2,7 @@
 const HeroCarouselData = [
   {
     id: 1,
-    title: "ALL STARS SALE",
+    title: "ALL BRANDS SALE",
     subtitle: "UP TO 50% OFF",
     description: "On 800+ Global & Homegrown luxury brands",
     ctaText: "SHOP SALE",

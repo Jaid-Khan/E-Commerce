@@ -1,135 +1,243 @@
-// Mock data for wishlist items - Men's and Women's Clothing Only
+// WishListData.js
+
+// Create wishlist items from your existing products data
 export const wishlistItemsData = [
+  // Men's Clothing Items
   {
     id: 1,
-    name: 'Men Solid Pure Cotton Straight Kurta (White)',
-    price: 799,
-    originalPrice: 999,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/a/s/o/l-krt-btn06-apektra-original-imahdmq3fsfc6efu.jpeg?q=70',
+    name: "Men's Embroidered Silk Kurta",
+    price: 4999,
+    originalPrice: 9999,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/l/4/r/s-sdes507-306-manyavar-original-imagkkzygvmvkbxr.jpeg?q=70",
     rating: 4.6,
     reviewCount: 234,
     inStock: true,
-    brand: 'EthnicWear',
-    addedDate: '2024-01-12',
+    brand: "Manyavar",
+    addedDate: '2024-01-15',
     category: 'Men Clothing',
-    size: 'L',
-    color: 'White'
+    size: 'M',
+    color: 'Blue',
+    productId: 1,
+    gender: 'male',
+    subCategory: 'kurtas'
   },
   {
     id: 2,
-    name: 'Women Floral Print Georgette Saree (Blue)',
-    price: 2499,
-    originalPrice: 2999,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/sari/6/f/g/free-sequin-embellished-saree-with-blouse-sequin-embellished-original-imahfyy8bh8hzr2f.jpeg?q=70',
-    rating: 4.4,
-    reviewCount: 156,
-    inStock: true,
-    brand: 'SareeHouse',
-    addedDate: '2024-01-07',
-    category: 'Women Clothing',
-    size: 'Free Size',
-    color: 'Blue'
-  },
-  {
-    id: 3,
-    name: 'Men Slim Fit Denim Jeans (Dark Blue)',
-    price: 1999,
+    name: "Cotton Printed Kurta",
+    price: 1499,
     originalPrice: 2499,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/jean/u/n/3/30-mj-bk-02-urbano-fashion-original-imahd4gbsh6r2hqk.jpeg?q=70',
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/x/y/b/xl-mx-em-001-maroon-kurta-koshin-original-imahc7nw5azzxyhf.jpeg?q=70",
     rating: 4.3,
     reviewCount: 189,
     inStock: true,
-    brand: 'UrbanDenim',
+    brand: "FabIndia",
+    addedDate: '2024-01-12',
+    category: 'Men Clothing',
+    size: 'L',
+    color: 'Maroon',
+    productId: 2,
+    gender: 'male',
+    subCategory: 'kurtas'
+  },
+  {
+    id: 3,
+    name: "Slim Fit Jeans",
+    price: 1999,
+    originalPrice: 3999,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/p/a/x/32-kjo-91017-slm-slmft-bk-killer-original-imahdfj74ekqybqb.jpeg?q=70",
+    rating: 4.4,
+    reviewCount: 312,
+    inStock: true,
+    brand: "Levi's",
     addedDate: '2024-01-10',
     category: 'Men Clothing',
     size: '32',
-    color: 'Dark Blue'
+    color: 'Black',
+    productId: 31,
+    gender: 'male',
+    subCategory: 'jeans'
   },
   {
     id: 4,
-    name: 'Women Embroidered Kurta Set (Green)',
-    price: 1899,
-    originalPrice: 2299,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/ethnic-set/p/j/m/m-aw22dts-ghs-2201-1-samoh-original-imahfyy8g4syygzh.jpeg?q=70',
-    rating: 4.5,
-    reviewCount: 127,
+    name: "Cotton Regular T-Shirt",
+    price: 599,
+    originalPrice: 1199,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/e/x/r/xxl-white-t72-emerald-apparel-trading-original-imahed7g6hagmd5g.jpeg?q=70",
+    rating: 4.2,
+    reviewCount: 167,
     inStock: true,
-    brand: 'EthnicChic',
+    brand: "Puma",
     addedDate: '2024-01-08',
-    category: 'Women Clothing',
-    size: 'M',
-    color: 'Green'
+    category: 'Men Clothing',
+    size: 'L',
+    color: 'White',
+    productId: 56,
+    gender: 'male',
+    subCategory: 'tshirts'
   },
   {
     id: 5,
-    name: 'Men Casual Checkered Shirt (Red)',
-    price: 899,
-    originalPrice: 1199,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/v/7/k/xl-cb-02-vebnor-original-imahf2n8w9snzuba.jpeg?q=70',
-    rating: 4.2,
-    reviewCount: 98,
-    inStock: false,
-    brand: 'CasualWear',
+    name: "Formal Cotton Shirt",
+    price: 1299,
+    originalPrice: 2599,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/i/n/t/l-wh-pl-le-1-clyver-original-imahewa6h2k5xfyp.jpeg?q=70",
+    rating: 4.5,
+    reviewCount: 278,
+    inStock: true,
+    brand: "Van Heusen",
     addedDate: '2024-01-05',
     category: 'Men Clothing',
-    size: 'XL',
-    color: 'Red'
+    size: 'L',
+    color: 'White',
+    productId: 76,
+    gender: 'male',
+    subCategory: 'shirts'
   },
-  {
-    id: 6,
-    name: 'Women Party Wear Dress (Black)',
-    price: 3499,
-    originalPrice: 3999,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/dress/l/2/k/s-22eud1c79696-supernova-original-imahfyy9hqfbhegz.jpeg?q=70',
-    rating: 4.7,
-    reviewCount: 203,
-    inStock: true,
-    brand: 'GlamourFits',
-    addedDate: '2024-01-15',
-    category: 'Women Clothing',
-    size: 'S',
-    color: 'Black'
-  },
+
+  // Women's Clothing Items
   {
     id: 7,
-    name: 'Men Sports T-Shirt (Black)',
-    price: 499,
-    originalPrice: 699,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/l/9/k/m-901-black-one-nb-nicky-boy-original-imahd3qzjczjdy5h.jpeg?q=70',
-    rating: 4.1,
-    reviewCount: 167,
+    name: "Embroidered Anarkali Kurta",
+    price: 1799,
+    originalPrice: 3599,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/v/7/c/s-lakhnawi-rose-romj-original-imahfyfk4dyfh4y2.jpeg?q=70",
+    rating: 4.7,
+    reviewCount: 423,
     inStock: true,
-    brand: 'ActiveWear',
-    addedDate: '2024-01-03',
-    category: 'Men Clothing',
+    brand: "Biba",
+    addedDate: '2024-01-14',
+    category: 'Women Clothing',
     size: 'M',
-    color: 'Black'
+    color: 'Pink',
+    productId: 16,
+    gender: 'female',
+    subCategory: 'kurtis'
   },
   {
     id: 8,
-    name: 'Women Cotton Palazzo Suit (Pink)',
-    price: 1599,
-    originalPrice: 1999,
-    image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/6/k/u/free-3-pc-printed-palazzo-suit-001-vastranikhar-original-imahfyf6fzgjf9uh.jpeg?q=70',
+    name: "Skinny Fit Jeans",
+    price: 1299,
+    originalPrice: 2599,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/4/v/i/32-women-single-button-high-rise-skinny-fit-stretchable-jeans-original-imagryduunhhqx4p.jpeg?q=70",
     rating: 4.4,
-    reviewCount: 145,
+    reviewCount: 289,
     inStock: true,
-    brand: 'TraditionalTreasures',
+    brand: "H&M",
     addedDate: '2024-01-11',
     category: 'Women Clothing',
+    size: '28',
+    color: 'Black',
+    productId: 46,
+    gender: 'female',
+    subCategory: 'jeans'
+  },
+  {
+    id: 9,
+    name: "Summer Floral Dress",
+    price: 1499,
+    originalPrice: 2999,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/dress/k/y/d/s-ds00bk1111-zummer-original-imahghudmv5ffufe.jpeg?q=70",
+    rating: 4.6,
+    reviewCount: 356,
+    inStock: true,
+    brand: "H&M",
+    addedDate: '2024-01-09',
+    category: 'Women Clothing',
+    size: 'M',
+    color: 'Multicolor',
+    productId: 86,
+    gender: 'female',
+    subCategory: 'dresses'
+  },
+  {
+    id: 10,
+    name: "Casual Summer Top",
+    price: 799,
+    originalPrice: 1599,
+    image: "https://rukminim2.flixcart.com/image/612/612/l3q7jww0/top/r/y/e/xl-flipkart-top-eva-yellow-dream-beauty-fashion-original-images739yxdwqgt.jpeg?q=70",
+    rating: 4.2,
+    reviewCount: 198,
+    inStock: true,
+    brand: "Zara",
+    addedDate: '2024-01-07',
+    category: 'Women Clothing',
+    size: 'M',
+    color: 'Yellow',
+    productId: 66,
+    gender: 'female',
+    subCategory: 'tops'
+  },
+  {
+    id: 11,
+    name: "Silk Kanchipuram Saree",
+    price: 4999,
+    originalPrice: 9999,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/sari/7/o/k/free-nc71-reva-red-umaa-unstitched-original-imahycscxnrzn7bv.jpeg?q=70",
+    rating: 4.8,
+    reviewCount: 512,
+    inStock: true,
+    brand: "Nalli",
+    addedDate: '2024-01-04',
+    category: 'Women Clothing',
     size: 'Free Size',
-    color: 'Pink'
+    color: 'Red',
+    productId: 96,
+    gender: 'female',
+    subCategory: 'sarees'
+  },
+  {
+    id: 13,
+    name: "Women's Oversized Sweater",
+    price: 1199,
+    originalPrice: 2399,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/sweater/t/2/f/m-swt000o5016-street-9-original-imagtnxgds37gs86.jpeg?q=70",
+    rating: 4.3,
+    reviewCount: 178,
+    inStock: true,
+    brand: "H&M",
+    addedDate: '2024-01-02',
+    category: 'Women Clothing',
+    size: 'M',
+    color: 'Pink',
+    productId: 117,
+    gender: 'female',
+    subCategory: 'sweaters'
+  },
+  {
+    id: 15,
+    name: "Women Embroidered Anarkali Suit",
+    price: 2599,
+    originalPrice: 5199,
+    image: "https://rukminim2.flixcart.com/image/612/612/xif0q/salwar-kurta-dupatta/z/9/y/s-30271855-sangria-original-imahaeysbqgnafnz.jpeg?q=70",
+    rating: 4.7,
+    reviewCount: 389,
+    inStock: true,
+    brand: "Biba",
+    addedDate: '2023-12-25',
+    category: 'Women Clothing',
+    size: 'M',
+    color: 'Royal Blue',
+    productId: 145,
+    gender: 'female',
+    subCategory: 'ethnic-wear'
   }
 ];
 
 // Utility functions for wishlist
 export const getWishlistStats = (items) => {
+  const totalValue = items.reduce((sum, item) => sum + item.price, 0);
+  const originalTotalValue = items.reduce((sum, item) => sum + (item.originalPrice || item.price), 0);
+  const totalSavings = originalTotalValue - totalValue;
+
   return {
     totalItems: items.length,
     inStock: items.filter(item => item.inStock).length,
     outOfStock: items.filter(item => !item.inStock).length,
-    totalValue: items.reduce((sum, item) => sum + item.price, 0),
-    categories: [...new Set(items.map(item => item.category))]
+    totalValue,
+    totalSavings,
+    categories: [...new Set(items.map(item => item.category))],
+    mensItems: items.filter(item => item.gender === 'male').length,
+    womensItems: items.filter(item => item.gender === 'female').length
   };
 };
 
@@ -147,6 +255,14 @@ export const sortWishlistItems = (items, sortBy) => {
       return sortedItems.sort((a, b) => a.name.localeCompare(b.name));
     case 'category':
       return sortedItems.sort((a, b) => a.category.localeCompare(b.category));
+    case 'rating':
+      return sortedItems.sort((a, b) => b.rating - a.rating);
+    case 'discount':
+      return sortedItems.sort((a, b) => {
+        const discountA = getDiscountPercentage(a.price, a.originalPrice);
+        const discountB = getDiscountPercentage(b.price, b.originalPrice);
+        return discountB - discountA;
+      });
     default:
       return sortedItems;
   }
@@ -157,24 +273,44 @@ export const filterWishlistByCategory = (items, category) => {
   return items.filter(item => item.category === category);
 };
 
+export const filterWishlistByGender = (items, gender) => {
+  if (gender === 'all') return items;
+  return items.filter(item => item.gender === gender);
+};
+
+export const filterWishlistBySubCategory = (items, subCategory) => {
+  if (subCategory === 'all') return items;
+  return items.filter(item => item.subCategory === subCategory);
+};
+
+export const filterWishlistByAvailability = (items, availability) => {
+  if (availability === 'all') return items;
+  if (availability === 'in-stock') return items.filter(item => item.inStock);
+  if (availability === 'out-of-stock') return items.filter(item => !item.inStock);
+  return items;
+};
+
 export const getDiscountPercentage = (price, originalPrice) => {
+  if (!originalPrice || originalPrice <= price) return 0;
   return Math.round(((originalPrice - price) / originalPrice) * 100);
 };
 
 export const formatCurrency = (amount) => {
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'INR'
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
   }).format(amount);
 };
 
 // Clothing specific wishlist functions
 export const getMensClothingItems = (items) => {
-  return items.filter(item => item.category === 'Men Clothing');
+  return items.filter(item => item.gender === 'male');
 };
 
 export const getWomensClothingItems = (items) => {
-  return items.filter(item => item.category === 'Women Clothing');
+  return items.filter(item => item.gender === 'female');
 };
 
 export const getAvailableSizesFromWishlist = (items) => {
@@ -182,7 +318,7 @@ export const getAvailableSizesFromWishlist = (items) => {
   items.forEach(item => {
     if (item.size) sizes.add(item.size);
   });
-  return Array.from(sizes);
+  return Array.from(sizes).sort();
 };
 
 export const getAvailableColorsFromWishlist = (items) => {
@@ -190,22 +326,89 @@ export const getAvailableColorsFromWishlist = (items) => {
   items.forEach(item => {
     if (item.color) colors.add(item.color);
   });
-  return Array.from(colors);
+  return Array.from(colors).sort();
 };
 
-// New utility functions for clothing categories
-export const getClothingTypes = (items) => {
-  const types = new Set();
+export const getSubCategoriesFromWishlist = (items) => {
+  const subCategories = new Set();
   items.forEach(item => {
-    if (item.name.toLowerCase().includes('kurta')) types.add('Kurtas');
-    if (item.name.toLowerCase().includes('saree')) types.add('Sarees');
-    if (item.name.toLowerCase().includes('jean')) types.add('Jeans');
-    if (item.name.toLowerCase().includes('shirt')) types.add('Shirts');
-    if (item.name.toLowerCase().includes('dress')) types.add('Dresses');
-    if (item.name.toLowerCase().includes('t-shirt')) types.add('T-Shirts');
-    if (item.name.toLowerCase().includes('suit')) types.add('Suits');
+    if (item.subCategory) subCategories.add(item.subCategory);
   });
-  return Array.from(types);
+  return Array.from(subCategories).sort();
+};
+
+export const getBrandsFromWishlist = (items) => {
+  const brands = new Set();
+  items.forEach(item => {
+    if (item.brand) brands.add(item.brand);
+  });
+  return Array.from(brands).sort();
+};
+
+// Search and filter functions
+export const searchWishlistItems = (items, searchTerm) => {
+  if (!searchTerm) return items;
+  const term = searchTerm.toLowerCase();
+  return items.filter(item => 
+    item.name.toLowerCase().includes(term) ||
+    item.brand.toLowerCase().includes(term) ||
+    item.category.toLowerCase().includes(term) ||
+    item.subCategory.toLowerCase().includes(term) ||
+    item.color.toLowerCase().includes(term)
+  );
+};
+
+export const filterWishlistByMultipleCriteria = (items, filters) => {
+  let filteredItems = [...items];
+
+  if (filters.category && filters.category !== 'all') {
+    filteredItems = filteredItems.filter(item => item.category === filters.category);
+  }
+
+  if (filters.gender && filters.gender !== 'all') {
+    filteredItems = filteredItems.filter(item => item.gender === filters.gender);
+  }
+
+  if (filters.subCategory && filters.subCategory !== 'all') {
+    filteredItems = filteredItems.filter(item => item.subCategory === filters.subCategory);
+  }
+
+  if (filters.availability && filters.availability !== 'all') {
+    filteredItems = filterWishlistByAvailability(filteredItems, filters.availability);
+  }
+
+  if (filters.brand && filters.brand !== 'all') {
+    filteredItems = filteredItems.filter(item => item.brand === filters.brand);
+  }
+
+  if (filters.minPrice) {
+    filteredItems = filteredItems.filter(item => item.price >= filters.minPrice);
+  }
+
+  if (filters.maxPrice) {
+    filteredItems = filteredItems.filter(item => item.price <= filters.maxPrice);
+  }
+
+  if (filters.size && filters.size !== 'all') {
+    filteredItems = filteredItems.filter(item => item.size === filters.size);
+  }
+
+  if (filters.color && filters.color !== 'all') {
+    filteredItems = filteredItems.filter(item => item.color === filters.color);
+  }
+
+  return filteredItems;
+};
+
+// Price range utilities
+export const getPriceRangeFromWishlist = (items) => {
+  if (items.length === 0) return { min: 0, max: 0 };
+  
+  const prices = items.map(item => item.price);
+  return {
+    min: Math.min(...prices),
+    max: Math.max(...prices)
+  };
 };
 
 // Export all utility functions together
@@ -213,13 +416,21 @@ export const wishlistUtils = {
   getWishlistStats,
   sortWishlistItems,
   filterWishlistByCategory,
+  filterWishlistByGender,
+  filterWishlistBySubCategory,
+  filterWishlistByAvailability,
+  filterWishlistByMultipleCriteria,
   getDiscountPercentage,
   formatCurrency,
   getMensClothingItems,
   getWomensClothingItems,
   getAvailableSizesFromWishlist,
   getAvailableColorsFromWishlist,
-  getClothingTypes
+  getSubCategoriesFromWishlist,
+  getBrandsFromWishlist,
+  searchWishlistItems,
+  getPriceRangeFromWishlist
 };
 
+// Default export
 export default wishlistItemsData;

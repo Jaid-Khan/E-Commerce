@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import { products } from "../../../Data/AllProductsData";
 import { filters, singleFilter } from "../../../Data/ProductFilterData";
 import { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
@@ -48,11 +48,13 @@ export default function Product() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortOption, setSortOption] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
   
   // Get category from URL parameters and location
   const { category, brand, featured } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // Function to get product by ID from both datasets
   const getProductById = (id) => {
@@ -63,6 +65,18 @@ export default function Product() {
     // If not found in main products, check in new arrivals
     const newArrivalProduct = newArrivalsData.find(product => product.id === parseInt(id));
     return newArrivalProduct;
+  };
+
+  // Function to search products by name or brand
+  const searchProducts = (query, productsList) => {
+    if (!query.trim()) return productsList;
+    
+    const searchTerm = query.toLowerCase().trim();
+    return productsList.filter(product => 
+      product.title?.toLowerCase().includes(searchTerm) ||
+      product.brand?.toLowerCase().includes(searchTerm) ||
+      product.name?.toLowerCase().includes(searchTerm)
+    );
   };
 
   // Handle filter changes
@@ -92,6 +106,7 @@ export default function Product() {
       stock: [],
     });
     setSortOption(null);
+    setSearchQuery('');
   };
 
   // Brand mapping for URL slugs to actual brand names
@@ -111,6 +126,10 @@ export default function Product() {
     setIsLoading(true);
     
     let results = [...products];
+    
+    // Get search query from URL
+    const urlSearchQuery = searchParams.get('q') || '';
+    setSearchQuery(urlSearchQuery);
 
     // Check if this is a product detail page
     const pathParts = location.pathname.split('/');
@@ -138,6 +157,11 @@ export default function Product() {
       results = results.filter(product => product.gender === 'female');
     } else if (isMenSection) {
       results = results.filter(product => product.gender === 'male');
+    }
+
+    // Apply search filter if search query exists
+    if (urlSearchQuery.trim()) {
+      results = searchProducts(urlSearchQuery, results);
     }
 
     // Apply category filter from URL
@@ -253,7 +277,7 @@ export default function Product() {
     console.log('Final filtered results:', results.length);
     setFilteredProducts(results);
     setIsLoading(false);
-  }, [selectedFilters, sortOption, category, brand, featured, location.pathname]);
+  }, [selectedFilters, sortOption, category, brand, featured, location.pathname, searchParams]);
 
   // Reset filters when URL changes
   useEffect(() => {
@@ -265,7 +289,7 @@ export default function Product() {
       stock: [],
     });
     setSortOption(null);
-  }, [category, brand, featured, location.pathname]);
+  }, [category, brand, featured, location.pathname, searchParams]);
 
   // Handle sort selection
   const handleSortSelect = (optionName) => {
@@ -276,7 +300,7 @@ export default function Product() {
   const areFiltersActive =
     Object.values(selectedFilters).some(
       (filterArray) => filterArray.length > 0
-    ) || sortOption !== null;
+    ) || sortOption !== null || searchQuery.trim() !== '';
 
   // Get page title based on URL parameters
   const getPageTitle = () => {
@@ -309,6 +333,11 @@ export default function Product() {
     if (pathParts[1] === 'product' && pathParts[2]) {
       const product = getProductById(pathParts[2]);
       return product ? (product.title || product.name) : "Product Details";
+    }
+
+    // Search results
+    if (searchQuery.trim()) {
+      return `Search Results for "${searchQuery}"`;
     }
 
     // Brand pages - this is the key update for brand functionality
@@ -353,6 +382,11 @@ export default function Product() {
     const currentPath = location.pathname;
     const isWomenSection = currentPath.includes('/womensproduct');
     const isMenSection = currentPath.includes('/mensproduct');
+    
+    // Search description
+    if (searchQuery.trim()) {
+      return `Found ${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} matching "${searchQuery}"`;
+    }
     
     // Brand description - this is the key update for brand functionality
     if (brand) {
@@ -903,15 +937,40 @@ export default function Product() {
                     ))
                   ) : (
                     <div className="w-full text-center py-10">
-                      <p className="text-gray-500 text-lg">
-                        No products found matching your criteria.
-                      </p>
-                      <button
-                        onClick={clearAllFilters}
-                        className="mt-4 text-indigo-600 hover:text-indigo-800 font-medium"
-                      >
-                        Clear all filters
-                      </button>
+                      <div className="max-w-md mx-auto">
+                        <div className="text-gray-400 mb-4">
+                          <svg className="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                          No products found
+                        </h3>
+                        <p className="text-gray-600 mb-6">
+                          {searchQuery.trim() 
+                            ? `We couldn't find any products matching "${searchQuery}".`
+                            : "We couldn't find any products matching your criteria."
+                          }
+                        </p>
+                        <div className="space-y-3">
+                          <p className="text-sm text-gray-500">Suggestions:</p>
+                          <ul className="text-sm text-gray-600 space-y-1 text-left">
+                            <li>• Try different keywords or spelling</li>
+                            <li>• Search by brand name (e.g., "Levi's", "H&M")</li>
+                            <li>• Search by product type (e.g., "jeans", "kurta")</li>
+                            <li>• Clear all filters and try again</li>
+                            <li>• Browse through categories</li>
+                          </ul>
+                        </div>
+                        {areFiltersActive && (
+                          <button
+                            onClick={clearAllFilters}
+                            className="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+                          >
+                            Clear All Filters
+                          </button>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

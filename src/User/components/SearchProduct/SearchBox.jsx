@@ -10,7 +10,15 @@ const SearchBox = ({ onSearch, initialValue = "", showBackButton = true }) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       onSearch(searchQuery);
+      // Navigate to products page with search query
+      navigate(`/products?q=${encodeURIComponent(searchQuery)}`, {
+        state: { searchQuery }
+      });
     }
+  };
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -26,7 +34,7 @@ const SearchBox = ({ onSearch, initialValue = "", showBackButton = true }) => {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleInputChange}
               placeholder="Search for products, brands and more"
               className="w-full rounded-lg border border-gray-300 px-4 py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
               autoFocus={showBackButton}

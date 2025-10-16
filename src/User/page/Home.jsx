@@ -13,6 +13,7 @@ import UserProfilePage from "./UserProfilePage";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import MyOrdersPage from "./MyOrdersPage";
 import BrandPage from "./BrandPage";
+import BrandCarousal from "../components/Brand/BrandCarousal";
 
 function Home() {
   return (
@@ -25,7 +26,7 @@ function Home() {
       <OffersBanner />
       <WomenCarousel />
       <MensCarousel />
-      <FeaturedCategoriesCarousel />
+      <BrandCarousal/>
     </div>
   );
 }

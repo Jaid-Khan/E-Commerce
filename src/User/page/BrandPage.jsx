@@ -1,71 +1,13 @@
 import React from 'react';
-import BrandCard from '../components/Brand/BrandCard';
+import BrandPageCard from '../components/Brand/BrandPageCard';
+import featuredBrands from '../../Data/BrandData';
 
 const BrandsPage = () => {
-  const featuredBrands = [
-    {
-      id: 1,
-      brand: "Zara",
-      discount: "UP TO 40% OFF",
-      image: "https://www.logo.wine/a/logo/Zara_(retailer)/Zara_(retailer)-Logo.wine.svg",
-      href: "/brand/zara"
-    },
-    {
-      id: 2,
-      brand: "H&M",
-      discount: "UP TO 50% OFF",
-      image: "https://www.logo.wine/a/logo/H%26M/H%26M-Logo.wine.svg",
-      href: "/brand/hm"
-    },
-    {
-      id: 3,
-      brand: "Forever 21",
-      discount: "UP TO 40% OFF",
-      image: "https://cdn.brandfetch.io/idcMH1IHZJ/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1676032240689",
-      href: "/brand/forever21"
-    },
-    {
-      id: 4,
-      brand: "Nike",
-      discount: "UP TO 45% OFF",
-      image: "https://www.logo.wine/a/logo/Nike%2C_Inc./Nike%2C_Inc.-Nike-White-Dark-Background-Logo.wine.svg",
-      href: "/brand/nike"
-    },
-    {
-      id: 5,
-      brand: "Adidas",
-      discount: "UP TO 35% OFF",
-      image: "https://www.logo.wine/a/logo/Adidas/Adidas-Logo.wine.svg",
-      href: "/brand/adidas"
-    },
-    {
-      id: 6,
-      brand: "Levi's",
-      discount: "UP TO 50% OFF",
-      image: "https://cdn.brandfetch.io/id6WkICeID/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1754300713582",
-      href: "/brand/levis"
-    },
-    {
-      id: 7,
-      brand: "CALVIN KLEIN",
-      discount: "UP TO 50% OFF",
-      image: "https://www.logo.wine/a/logo/Calvin_Klein_(company)/Calvin_Klein_(company)-Logo.wine.svg",
-      href: "/brand/ck"
-    },
-    {
-      id: 8,
-      brand: "Tommy Hilfiger",
-      discount: "UP TO 50% OFF",
-      image: "https://cdn.brandfetch.io/idXzJSRLEO/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667624000097",
-      href: "/brand/tommy"
-    }
-  ];
-
   return (
     <div className="bg-gray-50 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Shop by Brand</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover your favorite brands and explore their latest collections with exclusive discounts
@@ -73,32 +15,47 @@ const BrandsPage = () => {
         </div>
 
         {/* Brands Grid */}
-        <div className="flex flex-wrap -mx-2 sm:-mx-3 justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {featuredBrands.map((brand) => (
-            <BrandCard key={brand.id} brand={brand} />
+            <BrandPageCard key={brand.id} brand={brand} />
           ))}
         </div>
 
         {/* Additional Info Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-white rounded-lg shadow-sm p-8 max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        <div className="mt-20 text-center">
+          <div className="bg-white rounded-2xl shadow-sm p-8 max-w-4xl mx-auto border border-gray-100">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
               Premium Brands, Unbeatable Prices
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
               Explore our curated collection of top fashion brands. From high-street favorites to luxury labels, 
               we bring you the best of fashion with exclusive discounts and latest trends.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-500">
-              <div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-base text-gray-500">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Free Shipping</h3>
                 <p>On orders over $50</p>
               </div>
-              <div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Easy Returns</h3>
                 <p>30-day return policy</p>
               </div>
-              <div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Secure Payment</h3>
                 <p>100% secure checkout</p>
               </div>

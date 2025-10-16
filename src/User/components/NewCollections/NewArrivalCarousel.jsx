@@ -14,7 +14,7 @@ const NewArrivalCarousel = () => {
   const duplicatedItems = [
     ...newArrivalsData,
     ...newArrivalsData,
-    ...newArrivalsData
+    ...newArrivalsData,
   ];
 
   const totalSlides = duplicatedItems.length;
@@ -41,9 +41,9 @@ const NewArrivalCarousel = () => {
 
   const nextSlide = () => {
     setIsTransitioning(true);
-    setCurrentIndex(prevIndex => {
+    setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex + 1;
-      
+
       if (newIndex >= totalSlides - itemsPerView) {
         setTimeout(() => {
           setIsTransitioning(false);
@@ -51,16 +51,16 @@ const NewArrivalCarousel = () => {
           setTimeout(() => setIsTransitioning(true), 50);
         }, transitionDuration);
       }
-      
+
       return newIndex;
     });
   };
 
   const prevSlide = () => {
     setIsTransitioning(true);
-    setCurrentIndex(prevIndex => {
+    setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex - 1;
-      
+
       if (newIndex < 0) {
         setTimeout(() => {
           setIsTransitioning(false);
@@ -68,7 +68,7 @@ const NewArrivalCarousel = () => {
           setTimeout(() => setIsTransitioning(true), 50);
         }, transitionDuration);
       }
-      
+
       return newIndex;
     });
   };
@@ -88,52 +88,59 @@ const NewArrivalCarousel = () => {
   }, [currentIndex, itemsPerView]);
 
   return (
-    <section className="py-8 sm:py-12 bg-white">
+    <section className="py-8 sm:py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-xs sm:text-sm text-red-600 font-semibold text-center mb-6 sm:mb-10 tracking-wide">
-          JUST ARRIVED <span className="text-xl sm:text-2xl md:text-3xl text-black block mt-1 sm:mt-2 font-bold">NEW COLLECTIONS</span>
+          JUST ARRIVED{' '}
+          <span className="text-xl sm:text-2xl md:text-3xl text-black block mt-1 sm:mt-2 font-bold">
+            NEW COLLECTIONS
+          </span>
         </h2>
-        
+
         <div className="relative">
-          {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
-          <button 
+          {/* Navigation Arrows - Visible on all screens with different sizes */}
+          <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none hidden md:block"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-md hover:bg-gray-100 focus:outline-none transition-all duration-200
+                      md:p-2 p-1 md:left-0"
             aria-label="Previous slide"
           >
-            <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
+            <ChevronLeftIcon className="md:h-5 md:w-5 h-4 w-4 text-gray-700" />
           </button>
-          
-          <button 
+
+          <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none hidden md:block"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full shadow-md hover:bg-gray-100 focus:outline-none transition-all duration-200
+                      md:p-2 p-1 md:right-0"
             aria-label="Next slide"
           >
-            <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+            <ChevronRightIcon className="md:h-5 md:w-5 h-4 w-4 text-gray-700" />
           </button>
-          
+
           {/* Carousel Container */}
-          <div className="overflow-hidden px-8">
-            <div 
+          <div className="overflow-hidden md:px-8 px-4">
+            <div
               className="flex transition-transform duration-300 ease-in-out"
-              style={{ 
+              style={{
                 transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-                transition: isTransitioning ? `transform ${transitionDuration}ms ease-in-out` : 'none'
+                transition: isTransitioning
+                  ? `transform ${transitionDuration}ms ease-in-out`
+                  : 'none',
               }}
             >
               {duplicatedItems.map((item, index) => (
-                <div 
-                  key={`${item.id}-${index}`} 
+                <div
+                  key={`${item.id}-${index}`}
                   className="flex-shrink-0"
                   style={{ width: `${100 / itemsPerView}%` }}
                 >
-                  <NewArrivalCard item={item} />
+                  <NewArrivalCard category={item} />
                 </div>
               ))}
             </div>
           </div>
         </div>
-        
+
         {/* Dots Indicator */}
         {/* <div className="flex justify-center mt-6">
           {newArrivalsData.slice(0, Math.ceil(actualItemsCount / itemsPerView)).map((_, index) => (

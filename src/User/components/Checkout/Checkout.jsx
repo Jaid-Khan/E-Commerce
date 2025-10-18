@@ -21,7 +21,6 @@ import {
 import {
   shippingMethods,
   paymentMethods,
-  initialCartItems,
   initialShippingInfo,
   initialCardDetails
 } from '../../../Data/CheckoutData';
@@ -34,14 +33,41 @@ import PaymentMethodStep from './PaymentMethodStep';
 import ReviewOrderStep from './ReviewOrderStep';
 import OrderSummary from './OrderSummary';
 
-const Checkout = () => {
+const Checkout = ({ cartItems: propCartItems = [] }) => {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [cartItems, setCartItems] = React.useState(initialCartItems);
+  
+  // Use cart items from props or fallback to localStorage/context/API
+  const [cartItems, setCartItems] = React.useState(() => {
+    // Priority: props -> localStorage -> empty array
+    if (propCartItems && propCartItems.length > 0) {
+      return propCartItems;
+    }
+    
+    // Try to load from localStorage
+    try {
+      const savedCart = localStorage.getItem('cartItems');
+      if (savedCart) {
+        return JSON.parse(savedCart);
+      }
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+    }
+    
+    return [];
+  });
+  
   const [selectedShipping, setSelectedShipping] = React.useState(shippingMethods[0].id);
   const [selectedPayment, setSelectedPayment] = React.useState(paymentMethods[0].id);
   const [isProcessing, setIsProcessing] = React.useState(false);
   const [cardDetails, setCardDetails] = React.useState(initialCardDetails);
   const [shippingInfo, setShippingInfo] = React.useState(initialShippingInfo);
+
+  // Update localStorage when cart items change
+  React.useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -50,7 +76,11 @@ const Checkout = () => {
   const total = subtotal + shippingCost + tax;
 
   const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
+    if (newQuantity < 1) {
+      removeItem(id);
+      return;
+    }
+    
     setCartItems(items =>
       items.map(item =>
         item.id === id ? { ...item, quantity: newQuantity } : item
@@ -72,12 +102,23 @@ const Checkout = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate cart has items before proceeding
+    if (cartItems.length === 0) {
+      alert('Your cart is empty. Please add items before checkout.');
+      return;
+    }
+    
     if (activeStep === CHECKOUT_STEPS.length - 1) {
       setIsProcessing(true);
       // Simulate payment processing
       setTimeout(() => {
         setIsProcessing(false);
+        // Clear cart after successful order
+        setCartItems([]);
+        localStorage.removeItem('cartItems');
         alert('Order placed successfully!');
+        // Here you would typically redirect to order confirmation page
       }, 2000);
     } else {
       handleNext();
@@ -120,6 +161,10 @@ const Checkout = () => {
             cartItems={cartItems}
             shippingMethods={shippingMethods}
             paymentMethods={paymentMethods}
+            subtotal={subtotal}
+            shippingCost={shippingCost}
+            tax={tax}
+            total={total}
           />
         );
       default:
@@ -157,7 +202,7 @@ const Checkout = () => {
                 <Button
                   type="submit"
                   variant="contained"
-                  disabled={isProcessing}
+                  disabled={isProcessing || cartItems.length === 0}
                   endIcon={activeStep === CHECKOUT_STEPS.length - 1 ? <Lock /> : undefined}
                 >
                   {isProcessing ? 'Processing...' : 

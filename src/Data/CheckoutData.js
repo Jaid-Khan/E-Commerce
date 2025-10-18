@@ -71,13 +71,13 @@ export const initialCartItems = [
 ];
 
 export const initialShippingInfo = {
-  firstName: 'John',
-  lastName: 'Doe',
-  address: '123 Main Street',
-  city: 'Mumbai',
-  state: 'Maharashtra',
-  pinCode: '400001',
-  phone: '+91 9876543210'
+  firstName: '',
+  lastName: '',
+  address: '',
+  city: '',
+  state: '',
+  pinCode: '',
+  phone: '+91 '
 };
 
 export const initialCardDetails = {

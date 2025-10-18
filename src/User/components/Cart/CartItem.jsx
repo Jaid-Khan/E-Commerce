@@ -33,11 +33,11 @@ const CartItem = ({ item, updateQuantity, removeItem }) => {
         <div>
           <div className="flex justify-between text-base font-medium text-gray-900">
             <h3 className="text-lg">{item.name}</h3>
-            <p className="ml-4 text-lg">${(item.price * item.quantity).toFixed(2)}</p>
+            <p className="ml-4 text-lg">₹{(item.price * item.quantity).toFixed(2)}</p>
           </div>
           <p className="mt-1 text-sm text-gray-500">Color: {item.color}</p>
           <p className="mt-1 text-sm text-gray-500">Size: {item.size}</p>
-          <p className="mt-1 text-sm text-gray-500">Price: ${item.price} each</p>
+          <p className="mt-1 text-sm text-gray-500">Price: ₹{item.price} each</p>
           <p className="mt-1 text-sm text-gray-500">ID: {item.id}</p> {/* Debug: Show item ID */}
         </div>
         
